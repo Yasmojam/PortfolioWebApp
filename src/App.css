@@ -1,38 +1,77 @@
-.App {
-  text-align: center;
+html, body{
+    height:100%;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-weight: bold;
+
+    background: white;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.col {
+    margin: auto 0;
+    display: flex;
+    align-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.carousel-image {
+    width: 100%;
+    min-width: 300px;
+    max-width: 800px;
+    border-radius: 25px;
+    height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.navbar-brand, .navbar-brand:hover {
+    color: #000000;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-item {
+    display: flex;
+    color: #a09898;
+    margin: 4px 8px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-brand-cont {
+    display: flex;
+    margin-left: 4px;
+}
+.nav-item-cont {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.nav-item:hover{
+    color: #000000;
+}
+
+.sidebar-col {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.carousel-col {
+    display: flex;
+    justify-content: center;
+}
+
+/* Extra small devices (portrait tablets and large phones and phones, 600px and down) */
+@media only screen and (max-width: 768px) {
+    .nav-brand-cont {
+        display: flex;
+        margin: auto;
+    }
 }
