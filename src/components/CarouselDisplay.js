@@ -10,20 +10,20 @@ import Images from "../assets/Images";
          <Carousel  className="carousel-image">
              <Carousel.Item>
                  <img className="carousel-image"
+                      alt="dinner"
+                      src={Images.dinner}
+                 />
+             </Carousel.Item>
+             <Carousel.Item>
+                 <img className="carousel-image"
+                      alt="plant"
+                      src={Images.plant}
+                 />
+             </Carousel.Item>
+             <Carousel.Item>
+                 <img className="carousel-image"
                      alt="grill"
                      src={Images.grill}
-                     />
-             </Carousel.Item>
-             <Carousel.Item>
-                 <img className="carousel-image"
-                     alt="dinner"
-                     src={Images.dinner}
-                     />
-             </Carousel.Item>
-             <Carousel.Item>
-                 <img className="carousel-image"
-                     alt="plant"
-                     src={Images.plant}
                      />
              </Carousel.Item>
              <Carousel.Item>
