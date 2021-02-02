@@ -1,5 +1,4 @@
 html, body{
-    height:100%;
     margin: 0 auto;
     padding: 0;
     border: 0;
@@ -105,57 +104,69 @@ html, body{
         display: flex;
         margin: auto;
     }
-    .sidebar-options {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 2;
-
-    }
 
     .content-col {
-        top: 230px;
-        height: 100vh;
-        min-height: 100vh;
-        align-items: center;
         display: flex;
         justify-content: center;
-        margin-bottom: 8px;
+        margin: 0 auto;
     }
 
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
+/* Bigger devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 768px) {
     .sidebar-col {
         height: 100vh;
         min-height: 100vh;
     }
     .content-col {
-        height: 100vh;
-        min-height: 100vh;
-        align-items: center;
         display: flex;
         justify-content: center;
-        margin-bottom: 8px;
+        margin: auto 0;
     }
 
     .sidebar-options {
         position: fixed;
         background: white;
-        z-index:2
+        z-index:2;
     }
+}
 
+.about-cont {
+    margin: auto 0;
+}
+
+.gallery {
+    margin: 2em auto;
 }
 
 .artwork {
-    margin: 1em;
-    width: 100%
+    border-radius: 0.3em;
+    /*max-width: 100%;*/
+    /*max-height: 100%;*/
+    object-fit: cover;
 }
 
+.artwork-cont {
+    display: flex;
+    margin: 8px;
+    justify-content: center;
+    align-self: flex-end;
+    position: absolute;
+    flex-wrap: wrap;
+}
 
+.artwork-info-cont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto 0.5em;
+}
 
-
-
-
-
+.year {
+    color: #a09898;
+    display: flex;
+    justify-content: center;
+    font-size: small;
+    margin-bottom: 2.5em;
+}
