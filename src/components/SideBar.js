@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
-import Nav from "react-bootstrap/Nav";
-import { Navbar } from "react-bootstrap";
 import { useSelectedPage } from "./PageContexProvider";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Images from "../assets/Images";
-import Row from "react-bootstrap/Row";
 
 /**
  * Component which represents web application side navigation bar.
@@ -14,25 +11,13 @@ const SideBar = () => {
   const selectedPage = useSelectedPage().page;
 
   const listOfPages = [
-    { href: "about", name: "About" },
-    { href: "digital", name: "Digital" },
-    { href: "traditional", name: "Traditional" },
-    { href: "personal", name: "Personal Work" },
-    { href: "software", name: "Software" },
-    { href: "commission", name: "Commission Pricing" },
+    { href: "/about", name: "About" },
+    { href: "/digital", name: "Digital" },
+    { href: "/traditional", name: "Traditional" },
+    { href: "/personal", name: "Personal Work" },
+    { href: "/software", name: "Software" },
+    { href: "/commission", name: "Commission Pricing" },
   ];
-
-  const initialiseLink = (link) => {
-    return (
-      <Nav.Link
-        onClick={() => {
-          clickHandler(link);
-        }}
-      >
-        {link}
-      </Nav.Link>
-    );
-  };
 
   /**
    * Hook will call when page rendered and never again.
@@ -46,13 +31,12 @@ const SideBar = () => {
   };
 
   return (
-    <Nav defaultActiveKey="/" className="sidebar-options flex-md-column">
+    <div className="sidebar-options">
       <div className="nav-brand-cont">
-        <Navbar.Brand>
-          {" "}
+        <div>
           <Link
+            to={"/"}
             className="brand"
-            to=""
             onClick={() => {
               clickHandler("");
             }}
@@ -74,14 +58,15 @@ const SideBar = () => {
             </div>
             <div>Handyheart.</div>
           </Link>
-        </Navbar.Brand>
+        </div>
       </div>
-      <Nav className="flex-md-column nav-item-cont">
+      <div className="nav-item-cont">
         {/*Dynamically create pages from list of pages*/}
         {listOfPages.map((page, index) => {
           if (selectedPage === page.href) {
             return (
               <Link
+                key={index}
                 className="page"
                 style={{ color: "black" }}
                 to={page.href}
@@ -95,6 +80,7 @@ const SideBar = () => {
           } else {
             return (
               <Link
+                key={index}
                 className="page"
                 to={page.href}
                 onClick={() => {
@@ -106,8 +92,8 @@ const SideBar = () => {
             );
           }
         })}
-      </Nav>
-    </Nav>
+      </div>
+    </div>
   );
 };
 export default SideBar;

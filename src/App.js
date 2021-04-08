@@ -2,13 +2,7 @@ import React from "react";
 import "./App.css";
 import SideBar from "./components/SideBar";
 import CarouselDisplay from "./components/CarouselDisplay";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import {
-  PageContextProvider,
-  useSelectedPage,
-} from "./components/PageContexProvider";
+import { PageContextProvider } from "./components/PageContexProvider";
 import { BrowserRouter, Route } from "react-router-dom";
 import About from "./components/About";
 import ImageGrid from "./components/ImageGrid";
@@ -17,13 +11,38 @@ const App = () => {
   return (
     <PageContextProvider>
       <BrowserRouter>
-        <div className="App">
-          <Container fluid>
-            <Row>
-              <Col md={{ span: 3 }} className={"sidebar-col"}>
+        <div
+          className="App"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            flex: 1,
+            height: "100%",
+          }}
+        >
+          <div
+            className={"site-cont"}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+            }}
+          >
+            <div className={"sideContentCont"}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  flex: 2,
+                  // border: "1px red solid",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                className={"sidebar-col"}
+              >
                 <SideBar />
-              </Col>
-              <Col md={{ span: 9 }} className={"content-col"}>
+              </div>
+              <div className={"content-col"}>
                 <Route path="/" exact component={CarouselDisplay} />
                 <Route path="/about" component={About} />
                 <Route
@@ -32,7 +51,7 @@ const App = () => {
                 />
                 <Route
                   path="/traditional"
-                  component={() => <ImageGrid type="digital" />}
+                  component={() => <ImageGrid type="traditional" />}
                 />
                 <Route
                   path="/personal"
@@ -42,10 +61,32 @@ const App = () => {
                   path="/commission"
                   component={() => <ImageGrid type="commission" />}
                 />
-                {/*<div style={{justifyContent:"center", color: "#a09898", fontSize:"x-small", position: "relative",  clear: "both"}}>Handyheart © 2021</div>*/}
-              </Col>
-            </Row>
-          </Container>
+              </div>
+            </div>
+            <div
+              className={"footer"}
+              style={{
+                display: "flex",
+                flex: 1,
+                justifyContent: "center",
+                alignContent: "center",
+                // border: "1px black solid",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "flex-end",
+                  color: "#a09898",
+                  fontSize: "x-small",
+                  // border: "1px blue solid",
+                }}
+              >
+                Handyheart © 2021
+              </div>
+            </div>
+          </div>
         </div>
       </BrowserRouter>
     </PageContextProvider>

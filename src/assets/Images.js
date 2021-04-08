@@ -1,12 +1,12 @@
 const Images = {
-    grill: require('./frontpage/grill.png'),
-    dinner: require('./frontpage/Dinner.png'),
-    plant: require('./frontpage/plant.png'),
-    gif: require('./frontpage/first-anim.gif'),
-    gitHub: require('./GitHub-Mark-32px.png'),
-    tumblr: require('./Tumblr_Logo.png'),
-    instagram: require('./instagram.png'),
-    icon: require('./icon.png')
-}
+  isolation: require("./frontpage/isolation.png").default,
+  dinner: require("./frontpage/dinner.png").default,
+  plant: require("./frontpage/plant.png").default,
+  ladyCat: require("./frontpage/ladyCat.png").default,
+  gitHub: require("./GitHub-Mark-32px.png").default,
+  tumblr: require("./Tumblr_Logo.png").default,
+  instagram: require("./instagram.png").default,
+  icon: require("./icon.png").default,
+};
 
 export default Images;

@@ -1,64 +1,90 @@
-import React, { useEffect, useState } from "react";
-import Images from "../assets/Images";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
-const ImageGrid = (props) => {
-  const images = [
-    Images.dinner,
-    Images.dinner,
-    Images.dinner,
-    Images.dinner,
-    Images.dinner,
-    Images.dinner,
-    Images.dinner,
-    Images.dinner,
-    Images.dinner,
-    Images.dinner,
-    Images.dinner,
-  ];
+const ImageGrid = ({ type }) => {
+  const nodeRef = useRef(null);
+  const baseURl = process.env.REACT_APP_API_URL;
+  const [artworks, setArtworks] = useState([]);
 
-  const [artworks, setArtworks] = useState();
+  const retrieveData = useCallback(async () => {
+    const response = await fetch(
+      `${baseURl}/api/artworks/medium/${type}`
+      // "http://localhost:3000/api/artworks"
+    );
+    const json = await response.json();
+    const sortedArtworks = json.data.sort((a, b) => {
+      // Ascending date - newest to oldest
+      return new Date(b.date) - new Date(a.date);
+    });
+    // setArtworks(json.data);
+    setArtworks(sortedArtworks);
+  }, [baseURl, type]);
 
   useEffect(() => {
-    const retrieveData = async () => {
-      const response = await fetch(
-        // `${process.env.REACT_APP_API_URL}/api/artworks`
-        "http://localhost:3000/api/artworks"
-      );
-      const json = await response.json();
-      setArtworks(json.data);
-    };
     retrieveData();
-  }, []);
+  }, [retrieveData]);
+
+  const extractYearFromISO = (isoDate) => {
+    const date = new Date(isoDate);
+    return date.getFullYear();
+  };
 
   return (
-    <div className="gallery" style={{ margin: "auto" }}>
-      <Row style={{ margin: "0 auto", justifyContent: "center" }} gutter={40}>
+    <CSSTransition
+      nodeRef={nodeRef}
+      in={true}
+      appear={true}
+      enter={true}
+      exit={true}
+      timeout={300}
+      classNames="fade"
+      unmountOnExit
+    >
+      <div
+        className="gallery"
+        ref={nodeRef}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+        }}
+      >
         {artworks &&
-          artworks.map((artwork) => (
-            <Col
-              className="artwork-cont"
-              xs={{ span: 12 }}
-              sm={{ span: 12 }}
-              md={{ span: 12 }}
-              lg={{ span: 12 }}
-              xl={{ span: 3 }}
-            >
+          artworks.map((artwork, index) => (
+            <div className="artwork-cont" key={index}>
               <div className="artwork-info-cont">
                 <img
                   className="artwork"
                   alt={artwork.title}
-                  // src={`${process.env.REACT_APP_API_URL}/img/${artwork.image}`}
-                  src={`http://localhost:3000/img/${props.type}/${artwork.image}`}
-                  width="100%"
+                  src={`${process.env.REACT_APP_API_URL}/img/${artwork.medium}/${artwork.image}`}
+                  // src={`http://localhost:3000/img/${props.type}/${artwork.image}`}
                 />
-                <div className="year">{artwork.year}</div>
+                <div
+                  className={"title-year-cont"}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  <div
+                    className="artwork-name"
+                    style={{ color: "grey", paddingLeft: 5, paddingTop: 5 }}
+                  >
+                    {artwork.title}
+                  </div>
+                  <div
+                    className="year"
+                    style={{ color: "grey", paddingLeft: 5, paddingTop: 5 }}
+                  >
+                    {extractYearFromISO(artwork.date)}
+                  </div>
+                </div>
               </div>
-            </Col>
+            </div>
           ))}
-      </Row>
-    </div>
+      </div>
+    </CSSTransition>
   );
 };
 
