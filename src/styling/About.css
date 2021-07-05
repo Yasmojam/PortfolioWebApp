@@ -1,0 +1,87 @@
+.about-cont {
+    margin: 1em;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.social-cont{
+    display: flex;
+    justify-content: center
+}
+
+.tumblr.resize {
+    width: 50px;
+    height: auto;
+}
+
+.social-logos {
+    margin: 10px;
+    /*filter: opacity(90%);*/
+    font-size: xxx-large;
+    color: #393737;
+}
+
+.social-logos:hover {
+    /*filter: opacity(100%);*/
+    color: black;
+}
+
+/* Extra small devices (portrait tablets and large phones and phones, 600px and down) */
+@media only screen and (max-width: 1000px) {
+    .image-text-cont {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .about-text {
+        padding: 10px;
+        flex: 1;
+        height: 100%;
+        flex-direction: column;
+        display: flex;
+        max-width: 350px;
+    }
+}
+
+/* Bigger devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 1001px) {
+    .image-text-cont {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .about-text {
+        padding: 10px;
+        flex: 1;
+        height: 100%;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        max-width: 350px;
+    }
+    }
+#aboutImgSrc {
+    flex: 1;
+    object-fit: cover;
+    display: flex;
+    width: 100%;
+    border-radius: 15px;
+    padding: 5px;
+    min-width: 150px;
+    min-height: 150px;
+    max-width: 400px;
+    max-height: 400px;
+}
+.text-links-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
