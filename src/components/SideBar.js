@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { useSelectedPage } from '../context/PageContexProvider'
 import { Link } from 'react-router-dom'
-import Images from '../assets/Images'
 import '../styling/SideBar.css'
 
 /**
  * Component which represents web application side navigation bar.
  */
 const SideBar = () => {
+    const sideBarIcon = `${process.env.REACT_APP_API_URL}/img/digital/me_profile.jpg`
     const pageContext = useSelectedPage()
     const selectedPage = useSelectedPage().page
 
@@ -43,7 +43,7 @@ const SideBar = () => {
                         <div className={'brand-icon-cont'}>
                             <img
                                 className="sidebar-icon"
-                                src={Images.icon}
+                                src={sideBarIcon}
                                 alt="sidebar icon"
                                 width="80px"
                                 height="80px"

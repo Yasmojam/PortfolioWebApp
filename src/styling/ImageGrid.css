@@ -5,11 +5,18 @@
     flex-wrap: wrap;
 }
 
-.artwork {
+.artwork-desktop {
     border-radius: 0.3rem;
     object-fit: cover;
     height: 20rem;
     width: 20rem;
+
+}
+.artwork-mobile {
+    border-radius: 0.3rem;
+    object-fit: cover;
+    height: 8rem;
+    width: 8rem;
 
 }
 

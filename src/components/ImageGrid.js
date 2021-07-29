@@ -4,12 +4,14 @@ import backend from '../api/backend'
 import '../styling/ImageGrid.css'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css'
+import { useWindowType } from '../context/window'
 
 const ImageGrid = ({ type }) => {
     const nodeRef = useRef(null)
     const [artworks, setArtworks] = useState([])
     const [modalOpen, setModalOpen] = useState(false)
     const [selectedArtwork, setSelectedArtwork] = useState(0)
+    const windowType = useWindowType()
 
     const retrieveData = useCallback(async () => {
         await backend
@@ -93,7 +95,11 @@ const ImageGrid = ({ type }) => {
                             <div className="artwork-cont" key={index}>
                                 <div className="artwork-info-cont">
                                     <img
-                                        className="artwork"
+                                        className={
+                                            windowType === 'MOBILE'
+                                                ? 'artwork-mobile'
+                                                : 'artwork-desktop'
+                                        }
                                         alt={artwork.title}
                                         src={`${process.env.REACT_APP_API_URL}/img/${artwork.medium}/${artwork.image}`}
                                         onClick={() => {

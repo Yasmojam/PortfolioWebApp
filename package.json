@@ -14,10 +14,10 @@
     "axios": "^0.21.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-image-lightbox": "^5.1.1",
+    "react-image-lightbox": "^5.1.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.0",
+    "react-scripts": "^1.1.5",
     "react-transition-group": "^4.4.1"
   },
   "husky": {
