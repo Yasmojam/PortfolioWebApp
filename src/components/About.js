@@ -13,6 +13,7 @@ import '../styling/About.css'
  */
 const About = () => {
     const nodeRef = useRef(null)
+    const [showAbout, setShowAbout] = useState(false)
     const baseURl = process.env.REACT_APP_API_URL
     const [aboutImgSrc, setAboutImgSrc] = useState('')
     const retrieveData = useCallback(async () => {
@@ -34,12 +35,19 @@ const About = () => {
     useEffect(() => {
         retrieveData()
     }, [retrieveData])
+
+    useEffect(() => {
+        setTimeout(() => setShowAbout(true))
+    }, [])
+
     return (
         <CSSTransition
             nodeRef={nodeRef}
-            in={true}
+            in={showAbout}
             appear={true}
-            timeout={300}
+            enter={true}
+            exit={true}
+            timeout={1000}
             classNames="fade"
             unmountOnExit
         >
@@ -50,17 +58,16 @@ const About = () => {
                         <div className="about-text">
                             <p>
                                 I'm Yasmin, an illustrator and software
-                                developer based in Glasgow. Currently, open for
-                                commissions.
+                                developer based in Glasgow.
                             </p>
                             <p>Want to connect?</p>
                             <p>
                                 Email me at: {''}
                                 <a
                                     style={{ color: 'black' }}
-                                    href="mailto:handyheart_art@gmail.com"
+                                    href="mailto:handyheart.art@gmail.com"
                                 >
-                                    handyheart_art@gmail.com
+                                    handyheart.art@gmail.com
                                 </a>
                             </p>
                         </div>

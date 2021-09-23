@@ -8,6 +8,7 @@ import backend from '../api/backend'
  */
 const SlideShow = () => {
     const nodeRef = useRef(null)
+    const [showSlideShow, setShowSlideShow] = useState(false)
     const [slides, setSlides] = useState([])
     const [index, setIndex] = useState(0)
     const delay = 2500
@@ -24,6 +25,10 @@ const SlideShow = () => {
     useEffect(() => {
         retrieveData()
     }, [retrieveData])
+
+    useEffect(() => {
+        setTimeout(() => setShowSlideShow(true))
+    }, [])
 
     const resetTimeout = () => {
         if (timeoutRef.current) {
@@ -49,11 +54,11 @@ const SlideShow = () => {
     return (
         <CSSTransition
             nodeRef={nodeRef}
-            in={true}
+            in={showSlideShow}
             appear={true}
             enter={true}
             exit={true}
-            timeout={300}
+            timeout={1000}
             classNames="fade"
             unmountOnExit
         >

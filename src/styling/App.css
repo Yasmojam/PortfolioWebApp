@@ -123,7 +123,7 @@ body,
 }
 .fade-appear.fade-appear-active {
   opacity: 1;
-  transition: opacity 1000ms linear;
+  transition: opacity 100ms linear;
 }
 
 /* enter */
@@ -133,7 +133,7 @@ body,
 }
 .fade-enter.fade-enter-active {
   opacity: 1;
-  transition: opacity 5000ms linear 5000ms;
+  transition: opacity 500ms linear 500ms;
 }
 
 /* exit */
@@ -142,11 +142,12 @@ body,
 }
 .fade-exit.fade-exit-active {
   opacity: 0;
-  transition: opacity 5000ms linear;
+  transition: opacity 500ms linear 500ms;
 }
 .fade-exit-done {
   opacity: 0;
 }
+
 /* slide enter */
 .slide-enter {
   opacity: 0;

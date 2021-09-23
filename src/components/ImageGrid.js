@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { CSSTransition } from 'react-transition-group'
+import React, { useCallback, useEffect, useState } from 'react'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import backend from '../api/backend'
 import '../styling/ImageGrid.css'
 import Lightbox from 'react-image-lightbox'
@@ -7,7 +7,6 @@ import 'react-image-lightbox/style.css'
 import { useWindowType } from '../context/window'
 
 const ImageGrid = ({ type }) => {
-    const nodeRef = useRef(null)
     const [artworks, setArtworks] = useState([])
     const [modalOpen, setModalOpen] = useState(false)
     const [selectedArtwork, setSelectedArtwork] = useState(0)
@@ -40,87 +39,90 @@ const ImageGrid = ({ type }) => {
     }
 
     return (
-        <CSSTransition
-            nodeRef={nodeRef}
-            in={true}
-            appear={true}
-            enter={true}
-            exit={true}
-            timeout={300}
-            classNames="fade"
-            unmountOnExit
-        >
-            <div>
-                {modalOpen && (
-                    <Lightbox
-                        imagePadding={100}
-                        enableZoom={false}
-                        mainSrc={`${process.env.REACT_APP_API_URL}/img/${artworks[selectedArtwork].medium}/${artworks[selectedArtwork].image}`}
-                        nextSrc={
-                            selectedArtwork === artworks.length - 1
-                                ? `${process.env.REACT_APP_API_URL}/img/${artworks[0].medium}/${artworks[0].image}`
-                                : `${process.env.REACT_APP_API_URL}/img/${
-                                      artworks[selectedArtwork + 1].medium
-                                  }/${artworks[selectedArtwork + 1].image}`
-                        }
-                        prevSrc={
+        <div>
+            {modalOpen && (
+                <Lightbox
+                    imagePadding={100}
+                    enableZoom={false}
+                    mainSrc={`${process.env.REACT_APP_API_URL}/img/${artworks[selectedArtwork].medium}/${artworks[selectedArtwork].image}`}
+                    nextSrc={
+                        selectedArtwork === artworks.length - 1
+                            ? `${process.env.REACT_APP_API_URL}/img/${artworks[0].medium}/${artworks[0].image}`
+                            : `${process.env.REACT_APP_API_URL}/img/${
+                                  artworks[selectedArtwork + 1].medium
+                              }/${artworks[selectedArtwork + 1].image}`
+                    }
+                    prevSrc={
+                        selectedArtwork === 0
+                            ? `${process.env.REACT_APP_API_URL}/img/${
+                                  artworks[artworks.length - 1].medium
+                              }/${artworks[artworks.length - 1].image}`
+                            : `${process.env.REACT_APP_API_URL}/img/${
+                                  artworks[selectedArtwork - 1].medium
+                              }/${artworks[selectedArtwork - 1].image}`
+                    }
+                    onCloseRequest={() => setModalOpen(false)}
+                    onMovePrevRequest={() =>
+                        setSelectedArtwork(
                             selectedArtwork === 0
-                                ? `${process.env.REACT_APP_API_URL}/img/${
-                                      artworks[artworks.length - 1].medium
-                                  }/${artworks[artworks.length - 1].image}`
-                                : `${process.env.REACT_APP_API_URL}/img/${
-                                      artworks[selectedArtwork - 1].medium
-                                  }/${artworks[selectedArtwork - 1].image}`
-                        }
-                        onCloseRequest={() => setModalOpen(false)}
-                        onMovePrevRequest={() =>
-                            setSelectedArtwork(
-                                selectedArtwork === 0
-                                    ? artworks.length - 1
-                                    : selectedArtwork - 1
-                            )
-                        }
-                        onMoveNextRequest={() =>
-                            setSelectedArtwork(
-                                selectedArtwork === artworks.length - 1
-                                    ? 0
-                                    : selectedArtwork + 1
-                            )
-                        }
-                    />
-                )}
-                <div className="gallery" ref={nodeRef}>
+                                ? artworks.length - 1
+                                : selectedArtwork - 1
+                        )
+                    }
+                    onMoveNextRequest={() =>
+                        setSelectedArtwork(
+                            selectedArtwork === artworks.length - 1
+                                ? 0
+                                : selectedArtwork + 1
+                        )
+                    }
+                />
+            )}
+            <TransitionGroup>
+                <div className="gallery">
                     {artworks &&
                         artworks.map((artwork, index) => (
                             <div className="artwork-cont" key={index}>
-                                <div className="artwork-info-cont">
-                                    <img
-                                        className={
-                                            windowType === 'MOBILE'
-                                                ? 'artwork-mobile'
-                                                : 'artwork-desktop'
-                                        }
-                                        alt={artwork.title}
-                                        src={`${process.env.REACT_APP_API_URL}/img/${artwork.medium}/${artwork.image}`}
-                                        onClick={() => {
-                                            setModalOpen(true)
-                                            setSelectedArtwork(index)
-                                        }}
-                                    />
-                                    <div className={'title-year-cont'}>
-                                        <div className="artwork-name">
-                                            {artwork.title}
-                                        </div>
-                                        <div className="year">
-                                            {extractYearFromISO(artwork.date)}
+                                <CSSTransition
+                                    in={true}
+                                    appear={true}
+                                    enter={true}
+                                    exit={true}
+                                    timeout={1000}
+                                    classNames="fade"
+                                    unmountOnExit
+                                >
+                                    <div className="artwork-info-cont">
+                                        <img
+                                            className={
+                                                windowType === 'MOBILE'
+                                                    ? 'artwork-mobile'
+                                                    : 'artwork-desktop'
+                                            }
+                                            alt={artwork.title}
+                                            src={`${process.env.REACT_APP_API_URL}/img/${artwork.medium}/${artwork.image}`}
+                                            onClick={() => {
+                                                setModalOpen(true)
+                                                setSelectedArtwork(index)
+                                            }}
+                                        />
+                                        <div className={'title-year-cont'}>
+                                            <div className="artwork-name">
+                                                {artwork.title}
+                                            </div>
+                                            <div className="year">
+                                                {extractYearFromISO(
+                                                    artwork.date
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </CSSTransition>
                             </div>
                         ))}
                 </div>
-            </div>
-        </CSSTransition>
+            </TransitionGroup>
+        </div>
     )
 }
 
