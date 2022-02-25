@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import '../styling/SlideShow.css'
+import '../styling/SlideShow.scss'
 import { CSSTransition } from 'react-transition-group'
 import backend from '../api/backend'
 

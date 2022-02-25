@@ -1,3 +1,5 @@
+@use 'base';
+
 .entire-slideshow {
   display: flex;
   justify-content: center;
@@ -8,7 +10,7 @@
 }
 
 /*Extra small devices (portrait tablets and large phones and phones, 600px and down) */
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: base.$breakpoint-sm) {
   .slideshow {
     width: 100%;
     min-width: 100px;
@@ -20,12 +22,12 @@
 }
 
 /* Bigger devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 768px) {
+@media screen and (min-width: base.$breakpoint-md) {
   /* Slideshow container */
   .slideshow {
     width: 100%;
     min-width: 300px;
-    max-width: 800px;
+    max-width: 600px;
     position: relative;
     margin: 0 auto;
     overflow: hidden;

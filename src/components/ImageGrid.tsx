@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import backend from '../api/backend'
-import '../styling/ImageGrid.css'
+import '../styling/ImageGrid.scss'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css'
-import { useWindowType } from '../context/window'
+import { useWindowType } from '../hooks/window'
 
 const ImageGrid = ({ type }) => {
     const [artworks, setArtworks] = useState([])
@@ -18,10 +18,12 @@ const ImageGrid = ({ type }) => {
             .then((res) => {
                 const artwork = res.data
                 // console.log("fetched response: " + JSON.stringify(artwork));
-                const sortedArtworks = artwork.data.sort((a, b) => {
-                    // Ascending date - newest to oldest
-                    return new Date(b.date) - new Date(a.date)
-                })
+                const sortedArtworks = artwork.data.sort(
+                    (a: ArtworkResponse, b: ArtworkResponse) => {
+                        // Ascending date - newest to oldest
+                        return new Date(b.date) - new Date(a.date)
+                    }
+                )
                 setArtworks(sortedArtworks)
             })
             .catch((e) => {
@@ -42,7 +44,7 @@ const ImageGrid = ({ type }) => {
         <div>
             {modalOpen && (
                 <Lightbox
-                    imagePadding={100}
+                    imagePadding={50}
                     enableZoom={false}
                     mainSrc={`${process.env.REACT_APP_API_URL}/img/${artworks[selectedArtwork].medium}/${artworks[selectedArtwork].image}`}
                     nextSrc={

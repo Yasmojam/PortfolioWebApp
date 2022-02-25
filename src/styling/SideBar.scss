@@ -1,0 +1,111 @@
+@use 'base';
+
+.brand-icon-cont {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.sidebar-icon {
+    border-radius: 30px;
+}
+
+.brand,
+.brand:hover {
+    display: flex;
+    color: base.$primary-color;
+    text-decoration: none;
+    flex-direction: row;
+}
+
+.brand {
+    font-size: xx-large !important;
+}
+
+.brand-title {
+    display: flex;
+    align-items: center;
+}
+.brand-title-mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.brand-mobile-bot {
+    padding-left: 25px;
+}
+
+.page {
+    display: flex;
+    color: #a09898;
+    padding: 5px;
+    margin: 3px;
+    font-size: x-large;
+    text-decoration: none;
+}
+
+.page-active {
+    display: flex;
+    color: #32302c;
+    padding: 5px;
+    margin: 3px;
+    font-size: x-large;
+    text-decoration: none;
+    border-bottom: 2px #32302c solid;
+}
+
+.page:hover {
+    color: #32302c;
+    text-decoration: none;
+}
+
+.nav-brand-cont {
+    display: flex;
+    justify-content: center;
+    margin-left: 4px;
+}
+.nav-item-cont {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.nav-link:hover {
+    color: #32302c;
+}
+
+.nav-brand-cont-mobile {
+    display: flex;
+    /*margin: auto;*/
+    justify-content: flex-start;
+}
+
+.nav-brand-cont-desktop {
+    display: flex;
+    margin: auto;
+}
+.sidebar-options-desktop {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.sidebar-options-mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    background: white;
+    flex: 1;
+    align-items: center;
+}
+
+.nav-item-cont {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    flex-wrap: wrap;
+    flex-direction: row;
+}

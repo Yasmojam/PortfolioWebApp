@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ImageGrid from './ImageGrid'
-import '../styling/PortfolioPage.css'
-import { useWindowType } from '../context/window'
+import '../styling/PortfolioPage.scss'
+import { useWindowType } from '../hooks/window'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 const PortfolioPage = () => {

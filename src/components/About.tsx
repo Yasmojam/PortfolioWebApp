@@ -7,12 +7,14 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { CSSTransition } from 'react-transition-group'
 import backend from '../api/backend'
-import '../styling/About.css'
+import '../styling/About.scss'
+import { useWindowType } from '../hooks/window'
 /**
  * About page component.
  */
 const About = () => {
     const nodeRef = useRef(null)
+    const windowType = useWindowType()
     const [showAbout, setShowAbout] = useState(false)
     const baseURl = process.env.REACT_APP_API_URL
     const [aboutImgSrc, setAboutImgSrc] = useState('')
@@ -52,10 +54,22 @@ const About = () => {
             unmountOnExit
         >
             <div className="about-cont" ref={nodeRef}>
-                <div className={'image-text-cont'}>
+                <div
+                    className={
+                        windowType === 'MOBILE'
+                            ? 'image-text-cont-mobile'
+                            : 'image-text-cont-desktop'
+                    }
+                >
                     <img id={'aboutImgSrc'} src={aboutImgSrc} alt={'About'} />
                     <div className={'text-links-cont'}>
-                        <div className="about-text">
+                        <div
+                            className={
+                                windowType === 'MOBILE'
+                                    ? 'about-text-mobile'
+                                    : 'about-text-desktop'
+                            }
+                        >
                             <p>
                                 I'm Yasmin, an illustrator and software
                                 developer based in Glasgow.

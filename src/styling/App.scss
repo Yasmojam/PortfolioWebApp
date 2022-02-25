@@ -1,17 +1,17 @@
-html,
-body,
-#root {
-  padding: 0.3em;
+@use "base";
+
+html
+{
   border: 0;
-  margin: 0;
   height: 100%;
 
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
+  margin-left: calc(100vw - 100%);
 
-  font-family: "Source Sans Pro", sans-serif !important;
+  font-family: base.$font-stack !important;
 
-  background: white;
+  background: base.$background-color;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -48,8 +48,6 @@ body,
   display: flex;
   flex-direction: row;
   flex: 1;
-  align-items: center;
-  justify-content: center;
 }
 
 .content-col {
@@ -70,50 +68,22 @@ body,
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  color: #a09898;
+  color: base.$secondary-color;
   font-size: small;
   font-weight: bold;
 }
 
-/* Extra small devices (portrait tablets and large phones and phones, 600px and down) */
-@media only screen and (max-width: 1000px) {
-  .side-content-cont {
-    display: flex;
-    flex-direction: column;
-    /*border: 1px red solid;*/
-    justify-content: center;
-  }
-  .page {
-    display: flex;
-    color: #a09898;
-    padding: 0.25rem;
-    font-size: large;
-    text-decoration: none;
-  }
-
-  .content-col {
-    display: flex;
-    justify-content: center;
-    margin: 5px 0 auto;
-  }
+.side-content-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
-
-/* Bigger devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 1001px) {
-  .side-content-cont {
-    display: flex;
-    flex-direction: row;
-    /*border: 1px red solid;*/
-    justify-content: center;
-    height: 100%;
-  }
-  .content-col {
-    display: flex;
-    flex: 6;
-    /*border: 2px black solid;*/
-    align-content: center;
-    justify-content: center;
-  }
+.content-col {
+  display: flex;
+  flex: 6;
+  align-content: center;
+  justify-content: center;
 }
 
 /* appear - on page load */
