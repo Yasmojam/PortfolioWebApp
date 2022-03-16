@@ -1,24 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import '../styling/SideBar.scss'
-import { useWindowType } from '../hooks/window'
+import { useWindowType } from '../utils/window'
+import { listOfPages, sideBarIcon } from '../utils/shared'
+import { PortfolioContext } from '../context/PortfolioContext'
 import Hamburger from 'hamburger-react'
 
 /**
  * Component which represents web application side navigation bar.
  */
 const SideBar = () => {
-    const sideBarIcon = `${process.env.REACT_APP_API_URL}/img/digital/me_profile.jpg`
-
-    const listOfPages = [
-        { href: '/about', name: 'About' },
-        { href: '/digital', name: 'Digital' },
-        { href: '/traditional', name: 'Traditional' },
-        { href: '/collections', name: 'Collections' },
-    ]
-
     let location = useLocation().pathname
     const windowType = useWindowType()
+    const context = useContext(PortfolioContext)
+    const isOpen = context.isMenuOpen
 
     return (
         <div
@@ -55,25 +50,25 @@ const SideBar = () => {
                     )}
                 </Link>
             </div>
-            {windowType === 'MOBILE' ? (
-                <Hamburger color={'#32302c'} />
-            ) : (
+            {windowType === 'MOBILE' ? null : (
                 <div className="nav-item-cont">
                     {/*Dynamically create pages from list of pages*/}
                     {listOfPages.map((page, index) => {
-                        return (
-                            <Link
-                                key={index}
-                                className={
-                                    location === page.href
-                                        ? 'page-active'
-                                        : 'page'
-                                }
-                                to={page.href}
-                            >
-                                {page.name}
-                            </Link>
-                        )
+                        if (page.title !== 'Home') {
+                            return (
+                                <Link
+                                    key={index}
+                                    className={
+                                        location === page.to
+                                            ? 'page-active'
+                                            : 'page'
+                                    }
+                                    to={page.to}
+                                >
+                                    {page.title}
+                                </Link>
+                            )
+                        }
                     })}
                 </div>
             )}

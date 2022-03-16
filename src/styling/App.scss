@@ -24,6 +24,24 @@ html
   flex: 1;
   height: 100%;
 }
+.icon-hamburger {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  height: 80px;
+  width: auto;
+  top:18px;
+  left:34px;
+  right:34px;
+}
+
+.burger-button{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
 
 .site-cont {
   display: flex;

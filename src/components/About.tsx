@@ -8,7 +8,7 @@ import {
 import { CSSTransition } from 'react-transition-group'
 import backend from '../api/backend'
 import '../styling/About.scss'
-import { useWindowType } from '../hooks/window'
+import { useWindowType } from '../utils/window'
 /**
  * About page component.
  */

@@ -10,7 +10,6 @@
 }
 
 /*Extra small devices (portrait tablets and large phones and phones, 600px and down) */
-@media screen and (max-width: base.$breakpoint-sm) {
   .slideshow {
     width: 100%;
     min-width: 100px;
@@ -19,7 +18,6 @@
     margin: 0 auto;
     overflow: hidden;
   }
-}
 
 /* Bigger devices (portrait tablets and large phones, 600px and up) */
 @media screen and (min-width: base.$breakpoint-md) {

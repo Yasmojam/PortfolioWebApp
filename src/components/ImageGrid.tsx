@@ -4,13 +4,11 @@ import backend from '../api/backend'
 import '../styling/ImageGrid.scss'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css'
-import { useWindowType } from '../hooks/window'
 
 const ImageGrid = ({ type }) => {
     const [artworks, setArtworks] = useState([])
     const [modalOpen, setModalOpen] = useState(false)
     const [selectedArtwork, setSelectedArtwork] = useState(0)
-    const windowType = useWindowType()
 
     const retrieveData = useCallback(async () => {
         await backend
@@ -21,7 +19,10 @@ const ImageGrid = ({ type }) => {
                 const sortedArtworks = artwork.data.sort(
                     (a: ArtworkResponse, b: ArtworkResponse) => {
                         // Ascending date - newest to oldest
-                        return new Date(b.date) - new Date(a.date)
+                        return (
+                            new Date(b.date).getTime() -
+                            new Date(a.date).getTime()
+                        )
                     }
                 )
                 setArtworks(sortedArtworks)
@@ -96,11 +97,7 @@ const ImageGrid = ({ type }) => {
                                 >
                                     <div className="artwork-info-cont">
                                         <img
-                                            className={
-                                                windowType === 'MOBILE'
-                                                    ? 'artwork-mobile'
-                                                    : 'artwork-desktop'
-                                            }
+                                            className={'artwork-desktop'}
                                             alt={artwork.title}
                                             src={`${process.env.REACT_APP_API_URL}/img/${artwork.medium}/${artwork.image}`}
                                             onClick={() => {
