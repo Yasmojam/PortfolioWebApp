@@ -11,6 +11,7 @@ import Hamburger from 'hamburger-react'
 import { PortfolioContext } from './context/PortfolioContext'
 import { paths, sideBarIcon } from './utils/shared'
 import { useWindowType } from './utils/window'
+import './styling/SideBar.scss'
 
 const App = () => {
     const windowType = useWindowType()
@@ -20,7 +21,7 @@ const App = () => {
     return (
         <div className={'App'}>
             <>
-                <div>
+                <div style={isOpen ? { display: 'none' } : {}}>
                     <div className={'site-cont'}>
                         <div className={'side-content-cont'}>
                             <div className={'sidebar-col'}>
@@ -57,7 +58,7 @@ const App = () => {
                         </div>
                         <div className={'footer'}>
                             <div className={'footer-text'}>
-                                Handyheart © 2021
+                                Handyheart © 2022
                             </div>
                         </div>
                     </div>
@@ -67,7 +68,7 @@ const App = () => {
 
             {windowType === 'MOBILE' ? (
                 <div className={'icon-hamburger'}>
-                    {isOpen ? (
+                    <div className={'brand-icon-cont'}>
                         <img
                             className="sidebar-icon"
                             src={sideBarIcon}
@@ -75,7 +76,14 @@ const App = () => {
                             width="80px"
                             height="80px"
                         />
-                    ) : null}
+                        <div
+                            className={'brand-title-mobile'}
+                            style={isOpen ? { color: 'white' } : {}}
+                        >
+                            <div>Handy</div>
+                            <div className={'brand-mobile-bot'}>heart.</div>
+                        </div>
+                    </div>
                     <div className={'burger-button'}>
                         <Hamburger
                             color={isOpen ? 'white' : '#32302c'}

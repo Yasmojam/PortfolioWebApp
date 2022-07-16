@@ -3,7 +3,7 @@
 .brand-icon-cont {
     display: flex;
     justify-content: center;
-    margin: 10px;
+    margin:  10px 0;
 }
 
 .sidebar-icon {
@@ -30,6 +30,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 8px;
+    font-size: x-large;
 }
 .brand-mobile-bot {
     padding-left: 25px;
