@@ -21,7 +21,13 @@ const App = () => {
     return (
         <div className={'App'}>
             <>
-                <div style={isOpen ? { display: 'none' } : {}}>
+                <div
+                    style={
+                        isOpen && windowType === 'MOBILE'
+                            ? { display: 'none' }
+                            : {}
+                    }
+                >
                     <div className={'site-cont'}>
                         <div className={'side-content-cont'}>
                             <div className={'sidebar-col'}>
