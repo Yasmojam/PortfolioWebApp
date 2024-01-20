@@ -18,6 +18,6 @@ const useWindowSize = () => {
  * @returns {string} - "DESKTOP" or "MOBILE"
  */
 export const useWindowType = () => {
-    const [width, height] = useWindowSize()
+    const [width] = useWindowSize()
     return width >= 768 ? 'DESKTOP' : 'MOBILE'
 }

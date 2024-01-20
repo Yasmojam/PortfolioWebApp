@@ -1,20 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ImageGrid from './ImageGrid'
 import '../styling/PortfolioPage.scss'
-import { useWindowType } from '../utils/window'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
+import backend from '../api/backend'
+import { CollectionArtworkSchema } from '../api/apiTypes'
+import CollectionsGrid from './CollectionsGrid'
+
 const PortfolioPage = () => {
-    const listOfArt = [
-        { collection: 'Portraits', tag: 'portrait-collection' },
-        { collection: 'Electronic Cats', tag: 'eCat-collection' },
-        { collection: 'Branding', tag: 'branding-collection' },
-        { collection: 'Display Pictures', tag: 'display-collection' },
-    ]
+    const [collections, setCollections] = useState<
+        CollectionArtworkSchema[] | null
+    >(null)
 
-    const windowType = useWindowType()
+    useEffect(() => {
+        backend
+            .get(`/api/get-collections-data`)
+            .then((res) => {
+                const collectionsData = res.data
+                    .data as CollectionArtworkSchema[]
+                setCollections(
+                    collectionsData.filter(
+                        (collection) => collection.artworks.length > 0
+                    )
+                )
+            })
+            .catch((e) => {
+                console.log(`Error: ${JSON.stringify(e)}`)
+            })
+    }, [])
 
-    const [selectedCollection, setSelectedCollection] = useState(0)
+    const handleClickScroll = (scrollToCollectionId: number) => {
+        const element = document.getElementById(
+            `${scrollToCollectionId}-section`
+        )
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+        }
+    }
 
     return (
         <div
@@ -24,61 +44,42 @@ const PortfolioPage = () => {
                 flexDirection: 'column',
             }}
         >
-            {listOfArt.map((artworks, index) => {
-                return (
-                    <div
-                        key={index}
-                        style={{
-                            flexDirection: 'column',
-                            display: 'flex',
-                            flex: 1,
-                        }}
-                    >
+            <CollectionsGrid
+                collections={collections}
+                onClick={handleClickScroll}
+            />
+            {collections &&
+                collections.map((collection, index) => {
+                    return (
                         <div
-                            onClick={() => {
-                                if (selectedCollection === index) {
-                                    setSelectedCollection(-1)
-                                } else {
-                                    setSelectedCollection(index)
-                                }
-                            }}
-                            className={'collection-title'}
+                            key={index}
+                            id={`${collection.id}-section`}
                             style={{
+                                flexDirection: 'column',
                                 display: 'flex',
                                 flex: 1,
-                                width: '100%',
-                                justifyContent: 'space-between',
-                                padding: 10,
                             }}
                         >
-                            {artworks.collection}
-
-                            {windowType === 'MOBILE' ? (
-                                <FontAwesomeIcon
-                                    size={'sm'}
-                                    icon={
-                                        selectedCollection === index
-                                            ? faMinus
-                                            : faPlus
-                                    }
-                                    color={'#32302c'}
-                                />
-                            ) : null}
+                            <div
+                                className={'collection-title'}
+                                style={{
+                                    display: 'flex',
+                                    flex: 1,
+                                    width: '100%',
+                                    justifyContent: 'space-between',
+                                    padding: 10,
+                                }}
+                            >
+                                {collection.title}
+                            </div>
+                            {!!collection.artworks && (
+                                <div>
+                                    <ImageGrid artworks={collection.artworks} />
+                                </div>
+                            )}
                         </div>
-                        {selectedCollection === index &&
-                        windowType === 'MOBILE' ? (
-                            <div>
-                                <ImageGrid type={artworks.tag} />
-                            </div>
-                        ) : null}
-                        {windowType === 'DESKTOP' ? (
-                            <div>
-                                <ImageGrid type={artworks.tag} />
-                            </div>
-                        ) : null}
-                    </div>
-                )
-            })}
+                    )
+                })}
         </div>
     )
 }
