@@ -3,30 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.13.10",
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-brands-svg-icons": "^6.1.0",
-    "@fortawesome/free-regular-svg-icons": "^6.4.0",
-    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@babel/core": "^7.23.7",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-regular-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.26.1",
+    "axios": "1.6.5",
     "babel-plugin-macros": "^3.1.0",
-    "css-loader": "^6.6.0",
-    "hamburger-react": "^2.4.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-focus-lock": "^2.5.2",
+    "caniuse-lite": "^1.0.30001579",
+    "css-loader": "^6.9.1",
+    "hamburger-react": "^2.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-focus-lock": "^2.9.6",
     "react-image-lightbox": "^5.1.4",
-    "react-router": "^6.2.1",
-    "react-router-dom": "^6.2.1",
-    "react-scripts": "^5.0.0",
-    "react-transition-group": "^4.4.1",
-    "sass": "^1.49.7",
-    "source-map-loader": "^3.0.1",
-    "ts-loader": "^9.2.6"
+    "react-router": "^6.21.3",
+    "react-router-dom": "^6.21.3",
+    "react-scripts": "^5.0.1",
+    "react-transition-group": "^4.4.5",
+    "sass": "^1.70.0",
+    "source-map-loader": "^5.0.0",
+    "ts-loader": "^9.5.1"
   },
   "lint-staged": {
     "src/**/*.js": [
@@ -56,8 +54,14 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-typescript": "^7.21.5",
-    "prettier": "^2.2.1",
-    "prop-types": "^15.7.2"
+    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@babel/preset-typescript": "^7.23.3",
+    "prettier": "^3.2.4",
+    "prop-types": "^15.7.2",
+    "typescript": "^5.3.3"
   }
 }

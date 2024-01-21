@@ -9,7 +9,7 @@ export const PortfolioContext = createContext({
     setMenuOpen: (isOpen: boolean) => {},
 })
 
-export const PortfolioContextProvider: React.FC = ({ children }) => {
+export const PortfolioContextProvider: React.FC = ({children}: {children: React.ReactNode} ) => {
     const [isMenuOpen, setMenuOpen] = useState(false)
 
     return (

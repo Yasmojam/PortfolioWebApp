@@ -12,7 +12,6 @@ import {
 import { CSSTransition } from 'react-transition-group'
 import backend from '../api/backend'
 import '../styling/About.scss'
-import { useWindowType } from '../utils/window'
 
 interface SocialLogoProps {
     href: string
@@ -31,7 +30,6 @@ const SocialLogo = ({ href, icon }: SocialLogoProps) => {
  */
 const About = () => {
     const nodeRef = useRef(null)
-    const windowType = useWindowType()
     const [showAbout, setShowAbout] = useState(false)
     const baseURl = process.env.REACT_APP_API_URL
     const [aboutImgSrc, setAboutImgSrc] = useState('')

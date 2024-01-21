@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 import '../styling/ImageGrid.scss'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css'
