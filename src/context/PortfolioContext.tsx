@@ -2,14 +2,18 @@ import React, { createContext, useState } from 'react'
 
 export interface IContext {
     isMenuOpen: boolean
+    setMenuOpen?: (isOpen: boolean) => void
 }
 
-export const PortfolioContext = createContext({
+export const PortfolioContext = createContext<IContext>({
     isMenuOpen: false,
-    setMenuOpen: (isOpen: boolean) => {},
 })
 
-export const PortfolioContextProvider: React.FC = ({children}: {children: React.ReactNode} ) => {
+export const PortfolioContextProvider: React.FC = ({
+    children,
+}: {
+    children: React.ReactNode
+}) => {
     const [isMenuOpen, setMenuOpen] = useState(false)
 
     return (
