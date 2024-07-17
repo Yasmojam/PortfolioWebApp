@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import '../styling/SlideShow.scss'
 import { CSSTransition } from 'react-transition-group'
 import backend from '../api/backend'
+import { ArtworkSchema } from '../api/apiTypes'
+import { AxiosResponse } from 'axios'
 
 /**
  * Component which represents web application front page slide show.
@@ -16,8 +18,8 @@ const SlideShow = () => {
     const timeoutRef = useRef(null)
 
     const retrieveData = useCallback(async () => {
-        await backend.get('/api/artworks/tags/front-page').then((res) => {
-            // console.log("fetched response: " + JSON.stringify(res.data.data));
+        await backend.get<{data:ArtworkSchema[]}>('api/get-front-page-artworks').then((res) => {
+            console.log("RESPONSE", res)
             setSlides(res.data.data)
         })
     }, [])
@@ -49,7 +51,7 @@ const SlideShow = () => {
         return () => {
             resetTimeout()
         }
-    }, [index, slides.length])
+    }, [index, slides])
 
     return (
         <CSSTransition
@@ -75,7 +77,7 @@ const SlideShow = () => {
                                 <img
                                     className="slide-image"
                                     alt={slide.title}
-                                    src={`${baseURl}/img/${slide.medium}/${slide.image}`}
+                                    src={`${baseURl}/${slide.url}`}
                                 />
                             </div>
                         ))}
