@@ -1,32 +1,19 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../styling/SlideShow.scss'
 import { CSSTransition } from 'react-transition-group'
-import backend from '../api/backend'
-import { ArtworkSchema } from '../api/apiTypes'
-import { AxiosResponse } from 'axios'
+import { useSlideShowArtworks } from '../api/queries'
 
 /**
  * Component which represents web application front page slide show.
  */
 const SlideShow = () => {
+    const {data: slides} = useSlideShowArtworks()
     const nodeRef = useRef(null)
     const [showSlideShow, setShowSlideShow] = useState(false)
-    const [slides, setSlides] = useState([])
     const [index, setIndex] = useState(0)
     const delay = 2500
     const baseURl = process.env.REACT_APP_API_URL
     const timeoutRef = useRef(null)
-
-    const retrieveData = useCallback(async () => {
-        await backend.get<{data:ArtworkSchema[]}>('api/get-front-page-artworks').then((res) => {
-            console.log("RESPONSE", res)
-            setSlides(res.data.data)
-        })
-    }, [])
-
-    useEffect(() => {
-        retrieveData()
-    }, [retrieveData])
 
     useEffect(() => {
         setTimeout(() => setShowSlideShow(true))

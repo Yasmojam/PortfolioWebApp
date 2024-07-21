@@ -1,31 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ImageGrid from './ImageGrid'
 import '../styling/PortfolioPage.scss'
-import backend from '../api/backend'
-import { CollectionArtworkSchema } from '../api/apiTypes'
 import CollectionsGrid from './CollectionsGrid'
+import { useCollections } from '../api/queries'
 
 const PortfolioPage = () => {
-    const [collections, setCollections] = useState<
-        CollectionArtworkSchema[] | null
-    >(null)
-
-    useEffect(() => {
-        backend
-            .get(`/api/get-collections-data`)
-            .then((res) => {
-                const collectionsData = res.data
-                    .data as CollectionArtworkSchema[]
-                setCollections(
-                    collectionsData.filter(
-                        (collection) => collection.artworks.length > 0
-                    )
-                )
-            })
-            .catch((e) => {
-                console.log(`Error: ${JSON.stringify(e)}`)
-            })
-    }, [])
+    const {data: collections} = useCollections()
 
     const handleClickScroll = (scrollToCollectionId: number) => {
         const element = document.getElementById(

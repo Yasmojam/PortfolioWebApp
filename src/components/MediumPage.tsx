@@ -1,27 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import backend from '../api/backend'
-import { ArtworkSchema } from '../api/apiTypes'
+import React from 'react'
+import { useArtworksByMedium } from '../api/queries'
 import ImageGrid from './ImageGrid'
-import { MediumType, sortArtworksByDate } from '../utils/shared'
+import { MediumType } from '../utils/shared'
 
 interface MediumPageProps {
     medium: MediumType
 }
 
 const MediumPage = ({ medium }: MediumPageProps) => {
-    const [artworks, setArtworks] = useState<ArtworkSchema[]>([])
-    useEffect(() => {
-        backend
-            .get(`/api/get-artwork-mediums?medium=${medium}`)
-            .then((res) => {
-                const artwork = res.data
-                const sortedArtworks = artwork.data.sort(sortArtworksByDate)
-                setArtworks(sortedArtworks)
-            })
-            .catch((e) => {
-                console.log(`Error: ${JSON.stringify(e)}`)
-            })
-    }, [medium])
+    const {data:artworks} = useArtworksByMedium(medium)
 
     return <ImageGrid artworks={artworks} />
 }

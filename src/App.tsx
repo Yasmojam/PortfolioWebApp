@@ -13,13 +13,16 @@ import { MediumType, paths, sideBarIcon } from './utils/shared'
 import { useWindowType } from './utils/window'
 import './styling/SideBar.scss'
 import MediumPage from './components/MediumPage'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const App = () => {
+    const queryClient = new QueryClient()
     const windowType = useWindowType()
     const context = useContext(PortfolioContext)
     const isOpen = context.isMenuOpen
 
     return (
+        <QueryClientProvider client={queryClient}>
         <div className={'App'}>
             <>
                 <div
@@ -109,6 +112,7 @@ const App = () => {
                 </div>
             ) : null}
         </div>
+        </QueryClientProvider>
     )
 }
 

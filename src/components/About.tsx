@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faGithubSquare,
@@ -10,7 +10,6 @@ import {
     IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
 import { CSSTransition } from 'react-transition-group'
-import backend from '../api/backend'
 import '../styling/About.scss'
 
 interface SocialLogoProps {
@@ -30,37 +29,13 @@ const SocialLogo = ({ href, icon }: SocialLogoProps) => {
  */
 const About = () => {
     const nodeRef = useRef(null)
-    const [showAbout, setShowAbout] = useState(false)
     const baseURl = process.env.REACT_APP_API_URL
-    const [aboutImgSrc, setAboutImgSrc] = useState('')
-    const retrieveData = useCallback(async () => {
-        await backend
-            .get('/api/artworks/tags/about-page')
-            .then((res) => {
-                const artwork = res.data.data[0]
-                // console.log("fetched response: " + JSON.stringify(artwork));
-
-                setAboutImgSrc(
-                    `${baseURl}/img/${artwork.medium}/${artwork.image}`
-                )
-            })
-            .catch((e) => {
-                console.log(JSON.stringify(e))
-            })
-    }, [baseURl])
-
-    useEffect(() => {
-        retrieveData()
-    }, [retrieveData])
-
-    useEffect(() => {
-        setTimeout(() => setShowAbout(true))
-    }, [])
-
+    const aboutImgSrc = ""
+    
     return (
         <CSSTransition
             nodeRef={nodeRef}
-            in={showAbout}
+            in={true}
             appear={true}
             enter={true}
             exit={true}
