@@ -23,9 +23,9 @@ export enum MediumType {
     DIGITAL = 'digital',
 }
 
-export const extractYearFromISO = (isoDate) => {
+export const extractYearFromISO = (isoDate: string) => {
     const date = new Date(isoDate)
-    return date.getFullYear()
+    return date.getFullYear().toString()
 }
 
 export const sortArtworksByDate = (a: ArtworkSchema, b: ArtworkSchema) => {

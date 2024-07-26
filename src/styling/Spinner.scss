@@ -1,0 +1,22 @@
+$spinner-size: 48px;
+$color: #393737;
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+	width: $spinner-size;
+    height: $spinner-size;
+    color: $color;
+    opacity: 100%;
+	animation: rotateSpinner 2s linear infinite;
+}
+
+@keyframes rotateSpinner {
+	to {
+		transform: rotate(360deg);
+	}
+}

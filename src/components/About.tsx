@@ -1,16 +1,11 @@
 import React, { useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-    faGithubSquare,
-    faInstagram,
-    faTumblrSquare,
-} from '@fortawesome/free-brands-svg-icons'
-import {
     faEnvelopeSquare,
-    IconDefinition,
+    IconDefinition
 } from '@fortawesome/free-solid-svg-icons'
-import { CSSTransition } from 'react-transition-group'
 import '../styling/About.scss'
+import { faGithubSquare, faInstagram, faTumblrSquare } from '@fortawesome/free-brands-svg-icons'
 
 interface SocialLogoProps {
     href: string
@@ -28,22 +23,10 @@ const SocialLogo = ({ href, icon }: SocialLogoProps) => {
  * About page component.
  */
 const About = () => {
-    const nodeRef = useRef(null)
-    const baseURl = process.env.REACT_APP_API_URL
     const aboutImgSrc = ""
-    
+
     return (
-        <CSSTransition
-            nodeRef={nodeRef}
-            in={true}
-            appear={true}
-            enter={true}
-            exit={true}
-            timeout={1000}
-            classNames="fade"
-            unmountOnExit
-        >
-            <div className="about-cont" ref={nodeRef}>
+            <div className="about-cont">
                 <div className={'image-text-cont'}>
                     <img id={'aboutImgSrc'} src={aboutImgSrc} alt={'About'} />
                     <div className={'text-links-cont'}>
@@ -79,7 +62,6 @@ const About = () => {
                     </div>
                 </div>
             </div>
-        </CSSTransition>
     )
 }
 export default About

@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import { CSSTransition } from 'react-transition-group'
 import '../styling/ImageGrid.scss'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css'
 import { ArtworkSchema } from '../api/apiTypes'
-import { extractYearFromISO } from '../utils/shared'
 
 interface ImageGridProps {
     artworks: ArtworkSchema[]
@@ -20,22 +18,16 @@ const ImageGrid = ({ artworks }: ImageGridProps) => {
                 <Lightbox
                     imagePadding={50}
                     enableZoom={false}
-                    mainSrc={`${process.env.REACT_APP_API_URL}/${artworks[selectedArtwork].url}`}
+                    mainSrc={artworks[selectedArtwork].url}
                     nextSrc={
                         selectedArtwork === artworks.length - 1
-                            ? `${process.env.REACT_APP_API_URL}/${artworks[0].url}`
-                            : `${process.env.REACT_APP_API_URL}/${
-                                  artworks[selectedArtwork + 1].url
-                              }`
+                            ? artworks[0].url
+                            : artworks[selectedArtwork + 1].url
                     }
                     prevSrc={
                         selectedArtwork === 0
-                            ? `${process.env.REACT_APP_API_URL}/${
-                                  artworks[artworks.length - 1].url
-                              }`
-                            : `${process.env.REACT_APP_API_URL}/${
-                                  artworks[selectedArtwork - 1].url
-                              }`
+                            ? artworks[artworks.length - 1].url
+                            : artworks[selectedArtwork - 1].url
                     }
                     onCloseRequest={() => setModalOpen(false)}
                     onMovePrevRequest={() =>
@@ -61,35 +53,23 @@ const ImageGrid = ({ artworks }: ImageGridProps) => {
                             className="artwork-cont"
                             key={`${index}-${artwork.title}`}
                         >
-                            <CSSTransition
-                                in={true}
-                                appear={true}
-                                enter={true}
-                                exit={true}
-                                timeout={1000}
-                                classNames="fade"
-                                unmountOnExit
-                            >
-                                <div className="artwork-info-cont">
-                                    <img
-                                        className={'artwork-desktop'}
-                                        alt={artwork.title}
-                                        src={`${process.env.REACT_APP_API_URL}/${artwork.url}`}
-                                        onClick={() => {
-                                            setModalOpen(true)
-                                            setSelectedArtwork(index)
-                                        }}
-                                    />
-                                    <div className={'title-year-cont'}>
-                                        <div className="artwork-name">
-                                            {artwork.title}
-                                        </div>
-                                        <div className="year">
-                                            {extractYearFromISO(artwork.date)}
-                                        </div>
+                            <div className="artwork-info-cont">
+                                <img
+                                    className={'artwork-desktop'}
+                                    alt={artwork.title}
+                                    src={artwork.url}
+                                    onClick={() => {
+                                        setModalOpen(true)
+                                        setSelectedArtwork(index)
+                                    }}
+                                />
+                                <div className={'title-year-cont'}>
+                                    <div className="artwork-name">
+                                        {artwork.title}
                                     </div>
+                                    <div className="year">{artwork.date}</div>
                                 </div>
-                            </CSSTransition>
+                            </div>
                         </div>
                     ))}
             </div>

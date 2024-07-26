@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import '../styling/SlideShow.scss'
-import { CSSTransition } from 'react-transition-group'
 import { useSlideShowArtworks } from '../api/queries'
 
 /**
@@ -12,7 +11,6 @@ const SlideShow = () => {
     const [showSlideShow, setShowSlideShow] = useState(false)
     const [index, setIndex] = useState(0)
     const delay = 2500
-    const baseURl = process.env.REACT_APP_API_URL
     const timeoutRef = useRef(null)
 
     useEffect(() => {
@@ -41,16 +39,6 @@ const SlideShow = () => {
     }, [index, slides])
 
     return (
-        <CSSTransition
-            nodeRef={nodeRef}
-            in={showSlideShow}
-            appear={true}
-            enter={true}
-            exit={true}
-            timeout={1000}
-            classNames="fade"
-            unmountOnExit
-        >
             <div className={'entire-slideshow'} ref={nodeRef}>
                 <div className="slideshow">
                     <div
@@ -64,7 +52,7 @@ const SlideShow = () => {
                                 <img
                                     className="slide-image"
                                     alt={slide.title}
-                                    src={`${baseURl}/${slide.url}`}
+                                    src={slide.url}
                                 />
                             </div>
                         ))}
@@ -85,7 +73,6 @@ const SlideShow = () => {
                     </div>
                 </div>
             </div>
-        </CSSTransition>
     )
 }
 

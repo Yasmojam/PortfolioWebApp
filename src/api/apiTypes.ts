@@ -7,6 +7,7 @@
 
 export interface ArtworkSchema {
     title: string
+    medium: string
     date: string
     url: string
     collectionId?: number
