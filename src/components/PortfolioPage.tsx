@@ -3,9 +3,10 @@ import ImageGrid from './ImageGrid'
 import '../styling/PortfolioPage.scss'
 import CollectionsGrid from './CollectionsGrid'
 import { useCollections } from '../api/queries'
+import FadeIn from './FadeIn'
 
 const PortfolioPage = () => {
-    const {data: collections} = useCollections()
+    const { data: collections } = useCollections()
 
     const handleClickScroll = (scrollToCollectionId: number) => {
         const element = document.getElementById(
@@ -17,50 +18,55 @@ const PortfolioPage = () => {
     }
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                flex: 1,
-                flexDirection: 'column',
-            }}
-        >
-            <CollectionsGrid
-                collections={collections}
-                onClick={handleClickScroll}
-            />
-            {collections &&
-                collections.map((collection, index) => {
-                    return (
-                        <div
-                            key={index}
-                            id={`${collection.id}-section`}
-                            style={{
-                                flexDirection: 'column',
-                                display: 'flex',
-                                flex: 1,
-                            }}
-                        >
+        collections && (
+            <div
+                style={{
+                    display: 'flex',
+                    flex: 1,
+                    flexDirection: 'column',
+                }}
+            >
+                <CollectionsGrid
+                    collections={collections}
+                    onClick={handleClickScroll}
+                />
+                <FadeIn key={'portfolio-page-fade'}>
+                    {collections.map((collection, index) => {
+                        return (
                             <div
-                                className={'collection-title'}
+                                key={index}
+                                id={`${collection.id}-section`}
                                 style={{
+                                    flexDirection: 'column',
                                     display: 'flex',
                                     flex: 1,
-                                    width: '100%',
-                                    justifyContent: 'space-between',
-                                    padding: 10,
                                 }}
                             >
-                                {collection.title}
-                            </div>
-                            {!!collection.artworks && (
-                                <div>
-                                    <ImageGrid artworks={collection.artworks} />
+                                <div
+                                    className={'collection-title'}
+                                    style={{
+                                        display: 'flex',
+                                        flex: 1,
+                                        width: '100%',
+                                        justifyContent: 'space-between',
+                                        padding: 10,
+                                    }}
+                                >
+                                    {collection.title}
                                 </div>
-                            )}
-                        </div>
-                    )
-                })}
-        </div>
+                                {!!collection.artworks && (
+                                    <div>
+                                        <ImageGrid
+                                            artworks={collection.artworks}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        )
+                    })}
+                </FadeIn>
+            </div>
+        )
     )
 }
 

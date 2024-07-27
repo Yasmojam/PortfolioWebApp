@@ -13,12 +13,14 @@ import { useWindowType } from './utils/window'
 import './styling/SideBar.scss'
 import MediumPage from './components/MediumPage'
 
+
 const AppRoutes = () => {
     const windowType = useWindowType()
     const context = useContext(PortfolioContext)
     const isOpen = context.isMenuOpen
 
-    return (<>
+    return (
+        <>
             <>
                 <div
                     style={
@@ -32,40 +34,37 @@ const AppRoutes = () => {
                             <div className={'sidebar-col'}>
                                 <SideBar />
                             </div>
-                            <div className={'content-col'}>
-                                    <Routes>
-                                        <Route
-                                            path={paths.HOME}
-                                            element={<SlideShow />}
+                            <Routes>
+                                <Route
+                                    path={paths.HOME}
+                                    element={
+                                        // <Fade show={true}>
+                                            <SlideShow />
+                                        // </Fade>
+                                    }
+                                />
+                                <Route path={paths.ABOUT} element={<About />} />
+                                <Route
+                                    path={paths.DIGITAL}
+                                    element={
+                                        <MediumPage
+                                            medium={MediumType.DIGITAL}
                                         />
-                                        <Route
-                                            path={paths.ABOUT}
-                                            element={<About />}
+                                    }
+                                />
+                                <Route
+                                    path={paths.TRADITIONAL}
+                                    element={
+                                        <MediumPage
+                                            medium={MediumType.TRADITIONAL}
                                         />
-                                        <Route
-                                            path={paths.DIGITAL}
-                                            element={
-                                                <MediumPage
-                                                    medium={MediumType.DIGITAL}
-                                                />
-                                            }
-                                        />
-                                        <Route
-                                            path={paths.TRADITIONAL}
-                                            element={
-                                                <MediumPage
-                                                    medium={
-                                                        MediumType.TRADITIONAL
-                                                    }
-                                                />
-                                            }
-                                        />
-                                        <Route
-                                            path={paths.COLLECTIONS}
-                                            element={<PortfolioPage />}
-                                        />
-                                    </Routes>
-                            </div>
+                                    }
+                                />
+                                <Route
+                                    path={paths.COLLECTIONS}
+                                    element={<PortfolioPage />}
+                                />
+                            </Routes>
                         </div>
                         <div className={'footer'}>
                             <div className={'footer-text'}>

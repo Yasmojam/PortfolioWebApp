@@ -1,6 +1,5 @@
 import React from 'react'
 import '../styling/CollectionsGrid.scss'
-import 'react-image-lightbox/style.css'
 import { CollectionArtworkSchema } from '../api/apiTypes'
 
 interface ImageGridProps {

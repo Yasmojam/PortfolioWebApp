@@ -1,79 +1,44 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import '../styling/SlideShow.scss'
 import { useSlideShowArtworks } from '../api/queries'
-
+import FadeIn from './FadeIn'
 /**
  * Component which represents web application front page slide show.
  */
 const SlideShow = () => {
-    const {data: slides} = useSlideShowArtworks()
-    const nodeRef = useRef(null)
-    const [showSlideShow, setShowSlideShow] = useState(false)
-    const [index, setIndex] = useState(0)
-    const delay = 2500
-    const timeoutRef = useRef(null)
-
-    useEffect(() => {
-        setTimeout(() => setShowSlideShow(true))
-    }, [])
-
-    const resetTimeout = () => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current)
-        }
-    }
-
-    useEffect(() => {
-        resetTimeout()
-        timeoutRef.current = setTimeout(
-            () =>
-                setIndex((prevIndex) =>
-                    prevIndex === slides.length - 1 ? 0 : prevIndex + 1
-                ),
-            delay
-        )
-
-        return () => {
-            resetTimeout()
-        }
-    }, [index, slides])
+    const { data: slides, isFetchedAfterMount } = useSlideShowArtworks()
+    const [hoveredIndex, setHoveredIndex] = useState(null)
 
     return (
-            <div className={'entire-slideshow'} ref={nodeRef}>
+        isFetchedAfterMount && (
+            <FadeIn key={'slide-show'}>
                 <div className="slideshow">
-                    <div
-                        className="slideshowSlider"
-                        style={{
-                            transform: `translate3d(${-index * 100}%, 0, 0)`,
-                        }}
-                    >
+                    <div className="slideshowSlider">
                         {slides.map((slide, index) => (
-                            <div key={index} className={'slide'}>
-                                <img
-                                    className="slide-image"
-                                    alt={slide.title}
-                                    src={slide.url}
-                                />
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="slideshowDots">
-                        {slides.map((_, idex) => (
-                            <span
-                                key={idex}
-                                className={`dot${
-                                    index === idex ? ' active' : ''
-                                }`}
-                                onClick={() => {
-                                    setIndex(idex)
-                                }}
+                            <img
+                                className={
+                                    hoveredIndex === null
+                                        ? 'slide slide-image'
+                                        : hoveredIndex === index
+                                          ? 'slide slide-image selected'
+                                          : 'slide slide-image-hidden'
+                                }
+                                alt={slide.title}
+                                src={slide.url}
+                                key={index}
+                                onMouseEnter={() => setHoveredIndex(index)}
+                                onMouseLeave={() => setHoveredIndex(null)}
+                                onTouchStart={() => setHoveredIndex(index)}
                             />
                         ))}
                     </div>
                 </div>
-            </div>
+            </FadeIn>
+        )
     )
 }
 
 export default SlideShow
+function useRouteMatch() {
+    throw new Error('Function not implemented.')
+}

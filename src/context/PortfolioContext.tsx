@@ -9,10 +9,10 @@ export const PortfolioContext = createContext<IContext>({
     isMenuOpen: false,
 })
 
-export const PortfolioContextProvider: React.FC = ({
+export const PortfolioContextProvider = ({
     children,
 }: {
-    children: React.ReactNode
+    children: React.JSX.Element
 }) => {
     const [isMenuOpen, setMenuOpen] = useState(false)
 

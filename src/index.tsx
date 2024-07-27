@@ -1,16 +1,17 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import { PortfolioContextProvider } from './context/PortfolioContext'
+import { createRoot } from 'react-dom/client'
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root') as HTMLElement)
+
+root.render(
     <React.StrictMode>
         <PortfolioContextProvider>
             <BrowserRouter>
                 <App />
             </BrowserRouter>
         </PortfolioContextProvider>
-    </React.StrictMode>,
-    document.getElementById('root')
+    </React.StrictMode>
 )
