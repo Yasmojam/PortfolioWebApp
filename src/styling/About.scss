@@ -1,3 +1,5 @@
+@use "base";
+
 .about-cont {
     margin: 1em;
     display: flex;
@@ -9,7 +11,8 @@
 
 .social-cont{
     display: flex;
-    justify-content: center
+    justify-content: center;
+    flex-direction: column;
 }
 
 .tumblr.resize {
@@ -17,33 +20,32 @@
     height: auto;
 }
 
-.social-logos {
-    margin: 10px;
-    /*filter: opacity(90%);*/
+.social-logo {
     font-size: xxx-large;
     color: #393737;
 }
 
+.social-logos-container {
+    display: flex;
+    gap: 8px;
+}
+
 .social-logos:hover {
-    /*filter: opacity(100%);*/
     color: black;
 }
 
 
-.image-text-cont-mobile {
+.image-text-cont {
     display: flex;
     flex: 1;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.about-text-mobile {
-    padding: 10px;
-    flex: 1;
-    height: 100%;
-    flex-direction: column;
-    display: flex;
-    max-width: 350px;
+
+@media (max-width: base.$breakpoint-md){
+    .image-text-cont {
+        flex-direction: column;
+}
 }
 
 .image-text-cont-desktop {
@@ -53,15 +55,15 @@
     justify-content: center;
     align-items: center;
 }
-.about-text-desktop {
-    padding: 10px;
+
+.about-text {
     flex: 1;
     height: 100%;
     flex-direction: column;
     display: flex;
-    justify-content: center;
     max-width: 350px;
 }
+
 #aboutImgSrc {
     flex: 1;
     object-fit: cover;
@@ -77,6 +79,4 @@
 .text-links-cont {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 
 const useWindowSize = () => {
     const [size, setSize] = useState([0, 0])
@@ -18,6 +18,6 @@ const useWindowSize = () => {
  * @returns {string} - "DESKTOP" or "MOBILE"
  */
 export const useWindowType = () => {
-    const [width, height] = useWindowSize()
+    const [width] = useWindowSize()
     return width >= 768 ? 'DESKTOP' : 'MOBILE'
 }

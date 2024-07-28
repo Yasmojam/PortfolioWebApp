@@ -1,85 +1,72 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ImageGrid from './ImageGrid'
 import '../styling/PortfolioPage.scss'
-import { useWindowType } from '../utils/window'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
+import CollectionsGrid from './CollectionsGrid'
+import { useCollections } from '../api/queries'
+import FadeIn from './FadeIn'
+
 const PortfolioPage = () => {
-    const listOfArt = [
-        { collection: 'Portraits', tag: 'portrait-collection' },
-        { collection: 'Electronic Cats', tag: 'eCat-collection' },
-        { collection: 'Branding', tag: 'branding-collection' },
-        { collection: 'Display Pictures', tag: 'display-collection' },
-    ]
+    const { data: collections } = useCollections()
 
-    const windowType = useWindowType()
-
-    const [selectedCollection, setSelectedCollection] = useState(0)
+    const handleClickScroll = (scrollToCollectionId: number) => {
+        const element = document.getElementById(
+            `${scrollToCollectionId}-section`
+        )
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+        }
+    }
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                flex: 1,
-                flexDirection: 'column',
-            }}
-        >
-            {listOfArt.map((artworks, index) => {
-                return (
-                    <div
-                        key={index}
-                        style={{
-                            flexDirection: 'column',
-                            display: 'flex',
-                            flex: 1,
-                        }}
-                    >
-                        <div
-                            onClick={() => {
-                                if (selectedCollection === index) {
-                                    setSelectedCollection(-1)
-                                } else {
-                                    setSelectedCollection(index)
-                                }
-                            }}
-                            className={'collection-title'}
-                            style={{
-                                display: 'flex',
-                                flex: 1,
-                                width: '100%',
-                                justifyContent: 'space-between',
-                                padding: 10,
-                            }}
-                        >
-                            {artworks.collection}
-
-                            {windowType === 'MOBILE' ? (
-                                <FontAwesomeIcon
-                                    size={'sm'}
-                                    icon={
-                                        selectedCollection === index
-                                            ? faMinus
-                                            : faPlus
-                                    }
-                                    color={'#32302c'}
-                                />
-                            ) : null}
-                        </div>
-                        {selectedCollection === index &&
-                        windowType === 'MOBILE' ? (
-                            <div>
-                                <ImageGrid type={artworks.tag} />
+        collections && (
+            <div
+                style={{
+                    display: 'flex',
+                    flex: 1,
+                    flexDirection: 'column',
+                }}
+            >
+                <CollectionsGrid
+                    collections={collections}
+                    onClick={handleClickScroll}
+                />
+                <FadeIn key={'portfolio-page-fade'}>
+                    {collections.map((collection, index) => {
+                        return (
+                            <div
+                                key={index}
+                                id={`${collection.id}-section`}
+                                style={{
+                                    flexDirection: 'column',
+                                    display: 'flex',
+                                    flex: 1,
+                                }}
+                            >
+                                <div
+                                    className={'collection-title'}
+                                    style={{
+                                        display: 'flex',
+                                        flex: 1,
+                                        width: '100%',
+                                        justifyContent: 'space-between',
+                                        padding: 10,
+                                    }}
+                                >
+                                    {collection.title}
+                                </div>
+                                {!!collection.artworks && (
+                                    <div>
+                                        <ImageGrid
+                                            artworks={collection.artworks}
+                                        />
+                                    </div>
+                                )}
                             </div>
-                        ) : null}
-                        {windowType === 'DESKTOP' ? (
-                            <div>
-                                <ImageGrid type={artworks.tag} />
-                            </div>
-                        ) : null}
-                    </div>
-                )
-            })}
-        </div>
+                        )
+                    })}
+                </FadeIn>
+            </div>
+        )
     )
 }
 

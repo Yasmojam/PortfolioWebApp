@@ -1,6 +1,9 @@
+@use 'base';
+
 .gallery {
     margin: 1em auto;
     display: flex;
+    //justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
 }
@@ -8,12 +11,10 @@
 .artwork-desktop {
     border-radius: 0.3rem;
     object-fit: cover;
-    height: 20rem;
-    width: 20rem;
+    width: 100%;
     opacity: 1;
     -webkit-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
-
 }
 .artwork-desktop:hover {
     cursor: pointer;
@@ -22,17 +23,34 @@
 
 .artwork:hover {
     border-radius: 0.3rem;
-    height: 20rem;
-    width: 20rem;
 }
 
 .artwork-cont {
-    display: flex;
-    flex: 1;
-    margin: 8px;
-    justify-content: center;
-    align-self: center;
-    flex-wrap: wrap;
+  box-sizing: border-box; /* tells browser to include border in width calculation */
+  float: left;
+  background-repeat: no-repeat;
+  background-position: center center; /* keep image centered */
+  background-size: cover; /* fill the whole square */
+  width: 20%;
+  border: 5px solid transparent; /* arbitrary amount of whitespace between images */
+}
+
+@media screen and (max-width: base.$breakpoint-lg) {
+  .artwork-cont {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: base.$breakpoint-md) {
+  .artwork-cont {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: base.$breakpoint-sm) {
+  .artwork-cont {
+    width: 100%;
+  }
 }
 
 .artwork-info-cont {
