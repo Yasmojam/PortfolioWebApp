@@ -39,6 +39,3 @@ const SlideShow = () => {
 }
 
 export default SlideShow
-function useRouteMatch() {
-    throw new Error('Function not implemented.')
-}
