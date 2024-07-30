@@ -57,7 +57,6 @@ export const useArtworks = (medium: MediumType) => {
 }
 
 export const useSlideShowArtworks = () => {
-    console.log(BASE_URL)
     return useQuery({
         queryKey: [FRONT_PAGE_ARTWORKS_API],
         queryFn: () => client.get<ArtworkSchema[]>(FRONT_PAGE_ARTWORKS_API),
