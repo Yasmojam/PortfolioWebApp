@@ -21,7 +21,7 @@ const transformArtworks = (artworks: ArtworkSchema[]) => {
     return artworks.map((artwork) => ({
         ...artwork,
         date: extractYearFromISO(artwork.date),
-        url: `${BASE_URL}/${artwork.url}`,
+        url: `${BASE_URL}${artwork.url}`,
     }))
 }
 
