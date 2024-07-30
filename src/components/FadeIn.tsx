@@ -1,8 +1,7 @@
-import React from 'react'
 import '../styling/FadeIn.scss'
 
-const FadeIn = ({ children }) => {
-    return <div className={`animate fadeIn`}>{children}</div>
+const FadeIn = ({ children, key }: { children: JSX.Element | JSX.Element[], key:string }) => {
+    return <div className={`animate fadeIn`} key={key}>{children}</div>
 }
 
 export default FadeIn

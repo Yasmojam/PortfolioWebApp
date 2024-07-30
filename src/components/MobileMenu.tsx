@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import '../styling/MobileMenu.scss'
 import { PortfolioContext } from '../context/PortfolioContext'
 import { Link } from 'react-router-dom'
@@ -6,7 +6,7 @@ import { listOfPages } from '../utils/shared'
 const MobileMenu = () => {
     const context = useContext(PortfolioContext)
     const clickHandler = () => {
-        context.setMenuOpen(false)
+        context?.setMenuOpen?.(false)
     }
     return (
         <div className={'Menu'}>

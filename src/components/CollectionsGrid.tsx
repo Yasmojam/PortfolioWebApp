@@ -1,4 +1,3 @@
-import React from 'react'
 import '../styling/CollectionsGrid.scss'
 import { CollectionArtworkSchema } from '../api/apiTypes'
 

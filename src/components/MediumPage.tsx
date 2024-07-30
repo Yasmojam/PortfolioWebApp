@@ -1,4 +1,3 @@
-import React from 'react'
 import { useArtworks } from '../api/queries'
 import ImageGrid from './ImageGrid'
 import { MediumType } from '../utils/shared'
@@ -12,7 +11,7 @@ const MediumPage = ({ medium }: MediumPageProps) => {
     const { data: artworks, isFetchedAfterMount } = useArtworks(medium)
 
     return (
-        isFetchedAfterMount && (
+        isFetchedAfterMount && artworks && (
             <FadeIn key={`medium-gallery-${medium}`}>
                 <ImageGrid artworks={artworks} />
             </FadeIn>

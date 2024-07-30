@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import '../styling/SlideShow.scss'
 import { useSlideShowArtworks } from '../api/queries'
 import FadeIn from './FadeIn'
@@ -7,10 +7,10 @@ import FadeIn from './FadeIn'
  */
 const SlideShow = () => {
     const { data: slides, isFetchedAfterMount } = useSlideShowArtworks()
-    const [hoveredIndex, setHoveredIndex] = useState(null)
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
     return (
-        isFetchedAfterMount && (
+        isFetchedAfterMount && slides && (
             <FadeIn key={'slide-show'}>
                 <div className="slideshow">
                     <div className="slideshowSlider">

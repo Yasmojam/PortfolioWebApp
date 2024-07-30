@@ -17,7 +17,7 @@ export const client = axios.create({
     baseURL: BASE_URL,
 })
 
-const transformArtworks = (artworks: ArtworkSchema[]) => {
+const transformArtworks = (artworks: ArtworkSchema[]) : ArtworkSchema[]=> {
     return artworks.map((artwork) => ({
         ...artwork,
         date: extractYearFromISO(artwork.date),
@@ -32,10 +32,10 @@ export const useCollections = () => {
         select: (res) => {
             const collectionsData = res.data
             return collectionsData
-                .filter((collection) => collection.artworks.length > 0)
+                .filter((collection) => collection.artworks && collection.artworks.length > 0)
                 .map((collection) => ({
                     ...collection,
-                    artworks: transformArtworks(collection.artworks),
+                    artworks: transformArtworks(collection.artworks ?? []),
                 }))
         },
     })
@@ -57,6 +57,7 @@ export const useArtworks = (medium: MediumType) => {
 }
 
 export const useSlideShowArtworks = () => {
+    console.log(BASE_URL)
     return useQuery({
         queryKey: [FRONT_PAGE_ARTWORKS_API],
         queryFn: () => client.get<ArtworkSchema[]>(FRONT_PAGE_ARTWORKS_API),

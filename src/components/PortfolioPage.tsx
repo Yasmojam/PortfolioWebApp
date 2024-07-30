@@ -1,4 +1,3 @@
-import React from 'react'
 import ImageGrid from './ImageGrid'
 import '../styling/PortfolioPage.scss'
 import CollectionsGrid from './CollectionsGrid'

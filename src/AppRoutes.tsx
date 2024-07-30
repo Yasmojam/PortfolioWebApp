@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import './styling/App.scss'
 import SideBar from './components/SideBar'
 import SlideShow from './components/SlideShow'

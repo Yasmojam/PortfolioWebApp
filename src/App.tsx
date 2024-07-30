@@ -1,4 +1,3 @@
-import React from 'react'
 import './styling/App.scss'
 import './styling/SideBar.scss'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'

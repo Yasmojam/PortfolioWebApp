@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import '../styling/ImageGrid.scss'
 import { ArtworkSchema } from '../api/apiTypes'
 import Lightbox from 'yet-another-react-lightbox'

@@ -1,167 +1,169 @@
-@use "base";
+@use 'base';
 
-html
-{
-  border: 0;
-  height: 100%;
+html {
+    border: 0;
+    height: 100%;
 
-  overflow-y: scroll;
-  overflow-x: hidden;
-  margin-left: calc(100vw - 100%);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-left: calc(100vw - 100%);
 
-  font-family: base.$font-stack !important;
+    font-family: base.$font-stack !important;
 
-  background: base.$background-color;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: base.$background-color;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-body{
-  height: 100%;
+body {
+    height: 100%;
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
 }
 .icon-hamburger {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  height: 80px;
-  width: auto;
-  top:18px;
-  left:34px;
-  right:34px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    height: 80px;
+    width: auto;
+    top: 18px;
+    left: 34px;
+    right: 34px;
 }
 
-.burger-button{
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
+.burger-button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .site-cont {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .col {
-  margin: auto 0;
-  display: flex;
-  align-content: center;
+    margin: auto 0;
+    display: flex;
+    align-content: center;
 }
 
 .sideContentCont {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
 }
 
 .sidebar-col {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
 }
 
 .content-col {
-  display: flex;
-  flex: 6;
-  justify-content: center;
+    display: flex;
+    flex: 6;
+    justify-content: center;
 }
 
-
 .footer {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-content: flex-end;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-content: flex-end;
 }
 
 .footer-text {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  color: base.$secondary-color;
-  font-size: small;
-  font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: base.$secondary-color;
+    font-size: small;
+    font-weight: bold;
 }
 
 .side-content-cont {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
 .content-col {
-  display: flex;
-  flex: 6;
-  align-content: center;
-  justify-content: center;
+    display: flex;
+    flex: 6;
+    align-content: center;
+    justify-content: center;
 }
 
 /* appear - on page load */
 .fade-appear {
-  opacity: 0;
-  z-index: 1;
+    opacity: 0;
+    z-index: 1;
 }
 .fade-appear.fade-appear-active {
-  opacity: 1;
-  transition: opacity 100ms linear;
+    opacity: 1;
+    transition: opacity 100ms linear;
 }
 
 /* enter */
 .fade-enter {
-  opacity: 0;
-  z-index: 1;
+    opacity: 0;
+    z-index: 1;
 }
 .fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: opacity 500ms linear 500ms;
+    opacity: 1;
+    transition: opacity 500ms linear 500ms;
 }
 
 /* exit */
 .fade-exit {
-  opacity: 1;
+    opacity: 1;
 }
 .fade-exit.fade-exit-active {
-  opacity: 0;
-  transition: opacity 500ms linear 500ms;
+    opacity: 0;
+    transition: opacity 500ms linear 500ms;
 }
 .fade-exit-done {
-  opacity: 0;
+    opacity: 0;
 }
 
 /* slide enter */
 .slide-enter {
-  opacity: 0;
-  transform: scale(0.97) translateY(5px);
-  z-index: 1;
+    opacity: 0;
+    transform: scale(0.97) translateY(5px);
+    z-index: 1;
 }
 .slide-enter.slide-enter-active {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-  transition: opacity 3000ms linear 1000ms, transform 3000ms ease-in-out 1000ms;
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition:
+        opacity 3000ms linear 1000ms,
+        transform 3000ms ease-in-out 1000ms;
 }
 
 /* slide exit */
 .slide-exit {
-  opacity: 1;
-  transform: scale(1) translateY(0);
+    opacity: 1;
+    transform: scale(1) translateY(0);
 }
 .slide-exit.slide-exit-active {
-  opacity: 0;
-  transform: scale(0.97) translateY(5px);
-  transition: opacity 1500ms linear, transform 1500ms ease-out;
+    opacity: 0;
+    transform: scale(0.97) translateY(5px);
+    transition:
+        opacity 1500ms linear,
+        transform 1500ms ease-out;
 }
 .slide-exit-done {
-  opacity: 0;
+    opacity: 0;
 }

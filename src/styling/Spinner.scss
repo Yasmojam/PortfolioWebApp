@@ -8,15 +8,15 @@ $color: #393737;
 }
 
 .spinner {
-	width: $spinner-size;
+    width: $spinner-size;
     height: $spinner-size;
     color: $color;
     opacity: 100%;
-	animation: rotateSpinner 2s linear infinite;
+    animation: rotateSpinner 2s linear infinite;
 }
 
 @keyframes rotateSpinner {
-	to {
-		transform: rotate(360deg);
-	}
+    to {
+        transform: rotate(360deg);
+    }
 }
