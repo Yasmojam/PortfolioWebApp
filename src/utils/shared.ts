@@ -1,6 +1,6 @@
 import { ArtworkSchema } from '../api/apiTypes'
 
-export const sideBarIcon = `${import.meta.env.VITE_APP_API_URL}/img/digital/me_profile.jpg`
+export const sideBarIcon = `${import.meta.env.VITE_APP_API_URL}/media/img/me_profile.jpg`
 
 export enum paths {
     HOME = '/',

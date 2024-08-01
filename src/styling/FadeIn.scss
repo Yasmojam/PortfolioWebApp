@@ -25,6 +25,8 @@
 }
 
 .fadeIn {
+    display: flex;
+    justify-content: center;
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
 }

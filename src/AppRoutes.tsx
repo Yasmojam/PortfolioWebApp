@@ -13,7 +13,6 @@ import { useWindowType } from './utils/window'
 import './styling/SideBar.scss'
 import MediumPage from './components/MediumPage'
 
-
 const AppRoutes = () => {
     const windowType = useWindowType()
     const context = useContext(PortfolioContext)
@@ -37,11 +36,7 @@ const AppRoutes = () => {
                             <Routes>
                                 <Route
                                     path={paths.HOME}
-                                    element={
-                                        // <Fade show={true}>
-                                            <SlideShow />
-                                        // </Fade>
-                                    }
+                                    element={<SlideShow />}
                                 />
                                 <Route path={paths.ABOUT} element={<About />} />
                                 <Route

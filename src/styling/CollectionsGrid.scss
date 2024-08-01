@@ -63,9 +63,7 @@
 
 .c-button--alpha,
 .c-button--alpha::after {
-    transition:
-        top 0.05s ease-in-out,
-        left 0.05s ease-in-out;
+    transition: top 0.05s ease-in-out, left 0.05s ease-in-out;
 }
 
 .c-button--alpha:not(:disabled):hover {
