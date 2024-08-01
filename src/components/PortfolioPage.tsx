@@ -23,6 +23,7 @@ const PortfolioPage = () => {
                     display: 'flex',
                     flex: 1,
                     flexDirection: 'column',
+                    margin: '0 8px',
                 }}
             >
                 <CollectionsGrid
