@@ -4,3 +4,12 @@
     padding-bottom: 0.2em;
     padding-left: 0.5em;
 }
+
+.collections-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 0 8px;
+    justify-content: center;
+    align-items: center;
+}

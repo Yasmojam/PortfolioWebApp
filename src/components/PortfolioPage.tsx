@@ -30,39 +30,41 @@ const PortfolioPage = () => {
                     onClick={handleClickScroll}
                 />
                 <FadeIn key={'portfolio-page-fade'}>
-                    {collections.map((collection, index) => {
-                        return (
-                            <div
-                                key={index}
-                                id={`${collection.id}-section`}
-                                style={{
-                                    flexDirection: 'column',
-                                    display: 'flex',
-                                    flex: 1,
-                                }}
-                            >
+                    <div className={'collections-container'}>
+                        {collections.map((collection, index) => {
+                            return (
                                 <div
-                                    className={'collection-title'}
+                                    key={index}
+                                    id={`${collection.id}-section`}
                                     style={{
+                                        flexDirection: 'column',
                                         display: 'flex',
                                         flex: 1,
-                                        width: '100%',
-                                        justifyContent: 'space-between',
-                                        padding: 10,
                                     }}
                                 >
-                                    {collection.title}
-                                </div>
-                                {!!collection.artworks && (
-                                    <div>
-                                        <ImageGrid
-                                            artworks={collection.artworks}
-                                        />
+                                    <div
+                                        className={'collection-title'}
+                                        style={{
+                                            display: 'flex',
+                                            flex: 1,
+                                            width: '100%',
+                                            justifyContent: 'space-between',
+                                            padding: 10,
+                                        }}
+                                    >
+                                        {collection.title}
                                     </div>
-                                )}
-                            </div>
-                        )
-                    })}
+                                    {!!collection.artworks && (
+                                        <div>
+                                            <ImageGrid
+                                                artworks={collection.artworks}
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        })}
+                    </div>
                 </FadeIn>
             </div>
         )
