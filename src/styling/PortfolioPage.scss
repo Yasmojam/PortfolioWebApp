@@ -1,8 +1,9 @@
-.collection-title {
-    font-size: x-large;
-    border-bottom: 1px solid #e2e2e2;
-    padding-bottom: 0.2em;
-    padding-left: 0.5em;
+.collection-title-cont {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--secondary-color);
+    padding: 0.5em;
+    gap: 0.5em;
 }
 
 .collections-container {

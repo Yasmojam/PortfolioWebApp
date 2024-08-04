@@ -1,8 +1,10 @@
 import ImageGrid from './ImageGrid'
 import '../styling/PortfolioPage.scss'
+import '../styling/typography.scss'
 import CollectionsGrid from './CollectionsGrid'
 import { useCollections } from '../api/queries'
 import FadeIn from './FadeIn'
+import DOMPurify from 'dompurify'
 
 const PortfolioPage = () => {
     const { data: collections } = useCollections()
@@ -18,19 +20,19 @@ const PortfolioPage = () => {
 
     return (
         collections && (
-            <div
-                style={{
-                    display: 'flex',
-                    flex: 1,
-                    flexDirection: 'column',
-                    margin: '0 8px',
-                }}
-            >
-                <CollectionsGrid
-                    collections={collections}
-                    onClick={handleClickScroll}
-                />
-                <FadeIn key={'portfolio-page-fade'}>
+            <FadeIn key={'portfolio-page-fade'}>
+                <div
+                    style={{
+                        display: 'flex',
+                        flex: 1,
+                        flexDirection: 'column',
+                        margin: '0 8px',
+                    }}
+                >
+                    <CollectionsGrid
+                        collections={collections}
+                        onClick={handleClickScroll}
+                    />
                     <div className={'collections-container'}>
                         {collections.map((collection, index) => {
                             return (
@@ -43,17 +45,19 @@ const PortfolioPage = () => {
                                         flex: 1,
                                     }}
                                 >
-                                    <div
-                                        className={'collection-title'}
-                                        style={{
-                                            display: 'flex',
-                                            flex: 1,
-                                            width: '100%',
-                                            justifyContent: 'space-between',
-                                            padding: 10,
-                                        }}
-                                    >
-                                        {collection.title}
+                                    <div className={'collection-title-cont'}>
+                                        <text className="heading">
+                                            {collection.title}
+                                        </text>
+
+                                        <text
+                                            className="subheading"
+                                            dangerouslySetInnerHTML={{
+                                                __html: DOMPurify.sanitize(
+                                                    collection.description
+                                                ),
+                                            }}
+                                        />
                                     </div>
                                     {!!collection.artworks && (
                                         <div>
@@ -66,8 +70,8 @@ const PortfolioPage = () => {
                             )
                         })}
                     </div>
-                </FadeIn>
-            </div>
+                </div>
+            </FadeIn>
         )
     )
 }

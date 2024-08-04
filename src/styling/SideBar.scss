@@ -13,7 +13,7 @@
 .brand,
 .brand:hover {
     display: flex;
-    color: base.$primary-color;
+    color: var(--primary-color);
     text-decoration: none;
     flex-direction: row;
 }
@@ -39,42 +39,41 @@
 
 .page {
     display: flex;
-    color: #a09898;
+    color: var(--link-color);
     padding: 5px;
-    margin: 3px;
     font-size: x-large;
     text-decoration: none;
-}
-
-.page-active {
-    display: flex;
-    color: #32302c;
-    padding: 5px;
-    margin: 3px;
-    font-size: x-large;
-    text-decoration: none;
-    border-bottom: 2px #32302c solid;
 }
 
 .page:hover {
-    color: #32302c;
+    color: var(--link-active-color);
+}
+
+.page-active {
+    padding: 5px;
+    color: var(--link-active-color);
+    border-bottom: 2px var(--link-active-color) solid;
+    display: flex;
+    font-size: x-large;
     text-decoration: none;
+    padding: 3px;
 }
 
 .nav-brand-cont {
     display: flex;
     justify-content: center;
-    margin-left: 4px;
 }
 .nav-item-cont {
     display: flex;
     justify-content: center;
-    margin: auto;
+    margin: auto 24px;
     flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
 }
 
 .nav-link:hover {
-    color: #32302c;
+    color: var(--link-active-color);
 }
 
 .nav-brand-cont-mobile {
@@ -84,13 +83,13 @@
 
 .nav-brand-cont-desktop {
     display: flex;
-    margin: auto;
+    margin: 16px 24px;
 }
 .sidebar-options-desktop {
     display: flex;
-    flex: 1;
+    width: 100%;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-content: center;
 }
 .sidebar-options-mobile {
@@ -100,12 +99,4 @@
     align-content: center;
     flex: 1;
     align-items: center;
-}
-
-.nav-item-cont {
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    flex-wrap: wrap;
-    flex-direction: row;
 }

@@ -22,7 +22,7 @@
 
 .social-logo {
     font-size: xxx-large;
-    color: #393737;
+    color: var(--logo-color);
 }
 
 .social-logos-container {
@@ -31,7 +31,7 @@
 }
 
 .social-logos:hover {
-    color: black;
+    color: var(--primary-color);
 }
 
 .image-text-cont {

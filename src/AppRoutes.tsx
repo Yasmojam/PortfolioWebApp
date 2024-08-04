@@ -12,6 +12,7 @@ import { MediumType, paths, sideBarIcon } from './utils/shared'
 import { useWindowType } from './utils/window'
 import './styling/SideBar.scss'
 import MediumPage from './components/MediumPage'
+import FadeIn from './components/FadeIn'
 
 const AppRoutes = () => {
     const windowType = useWindowType()
@@ -38,7 +39,14 @@ const AppRoutes = () => {
                                     path={paths.HOME}
                                     element={<SlideShow />}
                                 />
-                                <Route path={paths.ABOUT} element={<About />} />
+                                <Route
+                                    path={paths.ABOUT}
+                                    element={
+                                        <FadeIn key={'about-fade'}>
+                                            <About />
+                                        </FadeIn>
+                                    }
+                                />
                                 <Route
                                     path={paths.DIGITAL}
                                     element={
@@ -91,7 +99,7 @@ const AppRoutes = () => {
                     </div>
                     <div className={'burger-button'}>
                         <Hamburger
-                            color={isOpen ? 'white' : '#32302c'}
+                            color={isOpen ? 'white' : undefined}
                             toggled={isOpen}
                             onToggle={context.setMenuOpen}
                         />

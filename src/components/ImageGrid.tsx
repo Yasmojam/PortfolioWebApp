@@ -43,10 +43,12 @@ const ImageGrid = ({ artworks }: ImageGridProps) => {
                                     }}
                                 />
                                 <div className={'title-year-cont'}>
-                                    <div className="artwork-name">
+                                    <text className="artwork-subtitle">
                                         {artwork.title}
-                                    </div>
-                                    <div className="year">{artwork.date}</div>
+                                    </text>
+                                    <text className="artwork-subtitle">
+                                        {artwork.date}
+                                    </text>
                                 </div>
                             </div>
                         </div>

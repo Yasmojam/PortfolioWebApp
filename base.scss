@@ -1,15 +1,61 @@
 // _base.scss
-$font-stack:  "Source Sans Pro", sans-serif;
-$primary-color: #292929;
-$secondary-color: #B1B1B1;
-$asparagus-color: #85A56A;
-$midgreen-color: #598955;
-$background-color: #ffffff;
+$font-stack: 'Source Sans Pro', sans-serif;
 
-$lang-hover-color: #e5e564;
-$dot-color: #bbb;
-$dot-hover-color: #717171;
+$light-background-color: #ffffff;
+$dark-background-color: #536753;
 
+$light-primary-color: #292929;
+$dark-primary-color: #e8ede8;
+
+$light-secondary-color: #b1b1b1;
+$dark-secondary-color: #b4b9b4;
+
+$light-link-color: #a09898;
+$dark-link-color: #a3b5a3;
+
+$light-link-active-color: #32302c;
+$dark-link-active-color: #f0efef;
+
+$light-logo-color: #393737;
+$dark-logo-color: #d1c8c8;
+
+$light-button-face-color: #ffffff;
+$dark-button-face-color: #7f917f;
+
+$light-outline-color: #505050;
+$dark-outline-color: #374236;
+
+$light-button-shadow-color: #85a56a;
+$dark-button-shadow-color: #3a4937;
+
+$light-menu-color: #85a56a;
+$dark-menu-color: #c5a67b;
+
+[theme-mode='light'] {
+    --background-color: #{$light-background-color};
+    --primary-color: #{$light-primary-color};
+    --secondary-color: #{$light-secondary-color};
+    --menu-color: #{$light-menu-color};
+    --link-color: #{$light-link-color};
+    --link-active-color: #{$light-link-active-color};
+    --logo-color: #{$light-logo-color};
+    --outline-color: #{$light-outline-color};
+    --button-shadow-color: #{$light-button-shadow-color};
+    --button-face-color: #{$light-button-face-color};
+}
+
+[theme-mode='dark'] {
+    --background-color: #{$dark-background-color};
+    --primary-color: #{$dark-primary-color};
+    --secondary-color: #{$dark-secondary-color};
+    --menu-color: #{$dark-menu-color};
+    --link-color: #{$dark-link-color};
+    --link-active-color: #{$dark-link-active-color};
+    --logo-color: #{$dark-logo-color};
+    --outline-color: #{$dark-outline-color};
+    --button-shadow-color: #{$dark-button-shadow-color};
+    --button-face-color: #{$dark-button-face-color};
+}
 $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 992px;

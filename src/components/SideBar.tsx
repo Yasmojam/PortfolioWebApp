@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import '../styling/SideBar.scss'
 import { useWindowType } from '../utils/window'
 import { listOfPages, sideBarIcon } from '../utils/shared'
+import { ToggleThemeButton } from './ToggleThemeButton'
 
 /**
  * Component which represents web application side navigation bar.
@@ -63,6 +64,7 @@ const SideBar = () => {
                 <div className="nav-item-cont">
                     {/*Dynamically create pages from list of pages*/}
                     {pages}
+                    <ToggleThemeButton transparent />
                 </div>
             )}
         </div>

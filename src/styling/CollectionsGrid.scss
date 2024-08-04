@@ -31,9 +31,9 @@
     text-align: center;
     padding: 6px;
     letter-spacing: 1px;
-    color: #505050;
-    border: 2px solid #505050;
-    background: #fff;
+    color: var(--primary-color);
+    border: 2px solid var(--outline-color);
+    background: var(--button-face-color);
     display: block;
     cursor: pointer;
     text-transform: lowercase;
@@ -55,8 +55,8 @@
     height: 100%;
     width: 100%;
     box-sizing: border-box;
-    background-color: base.$asparagus-color;
-    box-shadow: inset 0 0 0 2px #505050;
+    background-color: var(--button-shadow-color);
+    box-shadow: inset 0 0 0 2px var(--outline-color);
     content: '';
     border-radius: base.$button-border-radius;
 }
@@ -67,8 +67,8 @@
 }
 
 .c-button--alpha:not(:disabled):hover {
-    color: #505050;
-    border: 2px solid #505050;
+    color: var9(--outline-color);
+    border: 2px solid var(--outline-color);
     top: 4px;
     left: 4px;
 }

@@ -14,7 +14,7 @@
 @media screen and (max-width: base.$breakpoint-md) {
     /* Slideshow container */
     .slideshow {
-        max-width: 95vw;
+        // max-width: 95vw;
     }
 }
 
@@ -31,11 +31,14 @@
     object-fit: cover; // Make images cover the area while maintaining aspect ratio
     object-position: 70% 10%; // Center the image within the area
     transition: all 1s ease-in-out;
+    width: 100%;
 }
 .slide-image {
-    width: 100%;
+    flex: 1;
+    // width: 100%;
 }
 
 .slide-image-hidden {
-    width: 10%;
+    // width: 10%;
+    flex: 0.2;
 }

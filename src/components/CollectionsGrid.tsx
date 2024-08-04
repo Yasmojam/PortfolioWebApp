@@ -17,9 +17,7 @@ const CollectionsGrid = ({ collections, onClick }: ImageGridProps) => {
                     >
                         <div className="c-button-wrapper u-topMediumMargin">
                             <button
-                                className="c-button c-button--alpha "
-                                data-automation="signIn"
-                                type="submit"
+                                className="c-button c-button--alpha"
                             >
                                 <span className="c-button__text ">
                                     {collection.title}
