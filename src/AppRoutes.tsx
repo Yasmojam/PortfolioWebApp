@@ -1,23 +1,24 @@
 import { useContext } from 'react'
 import './styling/App.scss'
 import SideBar from './components/SideBar'
-import SlideShow from './components/SlideShow'
-import About from './components/About'
-import PortfolioPage from './components/PortfolioPage'
-import { Routes, Route } from 'react-router-dom'
+import { useRoutes, Outlet } from 'react-router-dom'
 import MobileMenu from './components/MobileMenu'
 import Hamburger from 'hamburger-react'
 import { PortfolioContext } from './context/PortfolioContext'
-import { MediumType, paths, sideBarIcon } from './utils/shared'
 import { useWindowType } from './utils/window'
 import './styling/SideBar.scss'
+import { useIcon } from './api/queries'
+import { MediumType, paths } from './utils/shared'
+import About from './components/About'
 import MediumPage from './components/MediumPage'
-import FadeIn from './components/FadeIn'
+import PortfolioPage from './components/PortfolioPage'
+import SlideShow from './components/SlideShow'
 
-const AppRoutes = () => {
+const Container = () => {
     const windowType = useWindowType()
     const context = useContext(PortfolioContext)
     const isOpen = context.isMenuOpen
+    const { data: icon } = useIcon()
 
     return (
         <>
@@ -34,45 +35,12 @@ const AppRoutes = () => {
                             <div className={'sidebar-col'}>
                                 <SideBar />
                             </div>
-                            <Routes>
-                                <Route
-                                    path={paths.HOME}
-                                    element={<SlideShow />}
-                                />
-                                <Route
-                                    path={paths.ABOUT}
-                                    element={
-                                        <FadeIn key={'about-fade'}>
-                                            <About />
-                                        </FadeIn>
-                                    }
-                                />
-                                <Route
-                                    path={paths.DIGITAL}
-                                    element={
-                                        <MediumPage
-                                            medium={MediumType.DIGITAL}
-                                        />
-                                    }
-                                />
-                                <Route
-                                    path={paths.TRADITIONAL}
-                                    element={
-                                        <MediumPage
-                                            medium={MediumType.TRADITIONAL}
-                                        />
-                                    }
-                                />
-                                <Route
-                                    path={paths.COLLECTIONS}
-                                    element={<PortfolioPage />}
-                                />
-                            </Routes>
+                            <Outlet />
                         </div>
                         <div className={'footer'}>
-                            <div className={'footer-text'}>
+                            <text className={'footer-text'}>
                                 Handyheart © {new Date().getFullYear()}
-                            </div>
+                            </text>
                         </div>
                     </div>
                 </div>
@@ -81,22 +49,24 @@ const AppRoutes = () => {
 
             {windowType === 'MOBILE' ? (
                 <div className={'icon-hamburger'}>
-                    <div className={'brand-icon-cont'}>
-                        <img
-                            className="sidebar-icon"
-                            src={sideBarIcon}
-                            alt="sidebar icon"
-                            width="80px"
-                            height="80px"
-                        />
-                        <div
-                            className={'brand-title-mobile'}
-                            style={isOpen ? { color: 'white' } : {}}
-                        >
-                            <div>Handy</div>
-                            <div className={'brand-mobile-bot'}>heart.</div>
+                    {icon && (
+                        <div className={'brand-icon-cont'}>
+                            <img
+                                className="sidebar-icon"
+                                src={icon.url}
+                                alt="sidebar icon"
+                                width="80px"
+                                height="80px"
+                            />
+                            <div
+                                className={'brand-title-mobile'}
+                                style={isOpen ? { color: 'white' } : {}}
+                            >
+                                <div>Handy</div>
+                                <div className={'brand-mobile-bot'}>heart.</div>
+                            </div>
                         </div>
-                    </div>
+                    )}
                     <div className={'burger-button'}>
                         <Hamburger
                             color={isOpen ? 'white' : undefined}
@@ -108,6 +78,29 @@ const AppRoutes = () => {
             ) : null}
         </>
     )
+}
+
+const AppRoutes = () => {
+    const element = useRoutes([
+        {
+            path: '/',
+            element: <Container />,
+            children: [
+                { path: paths.HOME, element: <SlideShow /> },
+                { path: paths.ABOUT, element: <About /> },
+                {
+                    path: paths.DIGITAL,
+                    element: <MediumPage medium={MediumType.DIGITAL} />,
+                },
+                {
+                    path: paths.TRADITIONAL,
+                    element: <MediumPage medium={MediumType.TRADITIONAL} />,
+                },
+                { path: paths.COLLECTIONS, element: <PortfolioPage /> },
+            ],
+        },
+    ])
+    return element
 }
 
 export default AppRoutes

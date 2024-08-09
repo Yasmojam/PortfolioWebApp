@@ -7,7 +7,7 @@
 
 export interface ArtworkSchema {
     title: string
-    medium: string
+    category: string
     date: string
     url: string
     collectionId?: number
@@ -22,5 +22,14 @@ export interface CollectionArtworkSchema {
 export interface CollectionSchema {
     id: number
     title: string
+    description: string
+}
+
+export interface IconSchema {
+    artwork: ArtworkSchema
+}
+
+export interface AboutInfoSchema {
+    artwork: ArtworkSchema
     description: string
 }

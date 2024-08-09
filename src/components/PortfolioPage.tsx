@@ -49,7 +49,6 @@ const PortfolioPage = () => {
                                         <text className="heading">
                                             {collection.title}
                                         </text>
-
                                         <text
                                             className="subheading"
                                             dangerouslySetInnerHTML={{

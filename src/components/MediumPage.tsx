@@ -11,7 +11,8 @@ const MediumPage = ({ medium }: MediumPageProps) => {
     const { data: artworks, isFetchedAfterMount } = useArtworks(medium)
 
     return (
-        isFetchedAfterMount && artworks && (
+        isFetchedAfterMount &&
+        artworks && (
             <FadeIn key={`medium-gallery-${medium}`}>
                 <ImageGrid artworks={artworks} />
             </FadeIn>

@@ -61,6 +61,7 @@ a:hover {
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
     margin: 0;
+    gap: 8px;
 }
 
 .col {
@@ -107,6 +108,7 @@ a:hover {
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    gap: 16px;
 }
 .content-col {
     display: flex;

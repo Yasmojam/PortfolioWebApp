@@ -19,5 +19,5 @@ const useWindowSize = () => {
  */
 export const useWindowType = () => {
     const [width] = useWindowSize()
-    return width >= 768 ? 'DESKTOP' : 'MOBILE'
+    return width >= 992 ? 'DESKTOP' : 'MOBILE'
 }
