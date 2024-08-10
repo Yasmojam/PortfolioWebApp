@@ -75,7 +75,7 @@ const About = () => {
                             </div>
                             <a href="https://ko-fi.com/handyheart/commissions">
                                 <img
-                                    src={'../src/assets/light-kofi.png'}
+                                    src={'../../public/light-kofi.png'}
                                     height={40}
                                     alt={'comission-me-on-kofi'}
                                 />
