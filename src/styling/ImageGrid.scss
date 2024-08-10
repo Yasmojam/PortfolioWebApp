@@ -3,7 +3,6 @@
 .gallery {
     margin: 1em auto;
     display: flex;
-    //justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
 }
@@ -16,9 +15,12 @@
     -webkit-transition: 0.3s ease-in-out;
     transition: 0.3s ease-in-out;
 }
-.artwork-desktop:hover {
-    cursor: pointer;
-    opacity: 0.7;
+
+@media screen and (min-width: base.$breakpoint-md) {
+    .artwork-desktop:hover {
+        cursor: pointer;
+        opacity: 0.7;
+    }
 }
 
 .artwork:hover {
