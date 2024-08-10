@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import '../styling/SlideShow.scss'
 import { useSlideShowArtworks } from '../api/queries'
 import FadeIn from './FadeIn'
@@ -7,28 +6,19 @@ import FadeIn from './FadeIn'
  */
 const SlideShow = () => {
     const { data: slides, isFetchedAfterMount } = useSlideShowArtworks()
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
     return (
-        isFetchedAfterMount && slides && (
+        isFetchedAfterMount &&
+        slides && (
             <FadeIn key={'slide-show'}>
                 <div className="slideshow">
                     <div className="slideshowSlider">
                         {slides.map((slide, index) => (
                             <img
-                                className={
-                                    hoveredIndex === null
-                                        ? 'slide slide-image'
-                                        : hoveredIndex === index
-                                          ? 'slide slide-image selected'
-                                          : 'slide slide-image-hidden'
-                                }
+                                className={'slide-image'}
                                 alt={slide.title}
                                 src={slide.url}
                                 key={index}
-                                onMouseEnter={() => setHoveredIndex(index)}
-                                onMouseLeave={() => setHoveredIndex(null)}
-                                onTouchStart={() => setHoveredIndex(index)}
                             />
                         ))}
                     </div>
