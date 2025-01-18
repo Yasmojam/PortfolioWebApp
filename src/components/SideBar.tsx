@@ -1,13 +1,13 @@
 import { Link, useLocation } from 'react-router-dom'
 import '../styling/SideBar.scss'
 import { useWindowType } from '../utils/window'
-import { listOfPages, sideBarIcon } from '../utils/shared'
+import { listOfPages } from '../utils/shared'
 import { ToggleThemeButton } from './ToggleThemeButton'
 
 /**
  * Component which represents web application side navigation bar.
  */
-const SideBar = () => {
+const SideBar = ({ iconSrc }: { iconSrc?: string }) => {
     let location = useLocation().pathname
     const windowType = useWindowType()
 
@@ -46,15 +46,17 @@ const SideBar = () => {
                         <span style={{ height: 100 }} />
                     ) : (
                         <>
-                            <div className={'brand-icon-cont'}>
-                                <img
-                                    className="sidebar-icon"
-                                    src={sideBarIcon}
-                                    alt="sidebar icon"
-                                    width="80px"
-                                    height="80px"
-                                />
-                            </div>
+                            {iconSrc && (
+                                <div className={'brand-icon-cont'}>
+                                    <img
+                                        className="sidebar-icon"
+                                        src={iconSrc}
+                                        alt="sidebar icon"
+                                        width="80px"
+                                        height="80px"
+                                    />
+                                </div>
+                            )}
                             <div className={'brand-title'}>Handyheart.</div>
                         </>
                     )}
@@ -62,7 +64,6 @@ const SideBar = () => {
             </div>
             {windowType === 'MOBILE' ? null : (
                 <div className="nav-item-cont">
-                    {/*Dynamically create pages from list of pages*/}
                     {pages}
                     <ToggleThemeButton transparent />
                 </div>

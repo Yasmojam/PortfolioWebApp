@@ -33,7 +33,7 @@ const Container = () => {
                     <div className={'site-cont'}>
                         <div className={'side-content-cont'}>
                             <div className={'sidebar-col'}>
-                                <SideBar />
+                                <SideBar iconSrc={icon?.url} />
                             </div>
                             <Outlet />
                         </div>
