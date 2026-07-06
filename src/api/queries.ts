@@ -24,12 +24,15 @@ export const client = axios.create({
     baseURL: BASE_URL,
 })
 
+const joinUrl = (base: string, path: string): string =>
+    `${base.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`
+
 const transformArtwork = (artwork: ArtworkSchema): ArtworkSchema => {
     return {
         ...artwork,
         date: extractYearFromISO(artwork.date),
-        url: `${BASE_URL}${artwork.url}`,
-        thumbnailUrl: `${BASE_URL}${artwork.thumbnailUrl}`,
+        url: joinUrl(BASE_URL, artwork.url),
+        thumbnailUrl: joinUrl(BASE_URL, artwork.thumbnailUrl),
     }
 }
 
