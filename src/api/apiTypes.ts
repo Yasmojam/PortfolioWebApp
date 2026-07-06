@@ -10,6 +10,7 @@ export interface ArtworkSchema {
     category: string
     date: string
     url: string
+    thumbnailUrl: string
     collectionId?: number
 }
 export interface CamelModel {}

@@ -29,6 +29,7 @@ const transformArtwork = (artwork: ArtworkSchema): ArtworkSchema => {
         ...artwork,
         date: extractYearFromISO(artwork.date),
         url: `${BASE_URL}${artwork.url}`,
+        thumbnailUrl: `${BASE_URL}${artwork.thumbnailUrl}`,
     }
 }
 

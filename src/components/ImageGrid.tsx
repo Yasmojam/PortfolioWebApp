@@ -36,7 +36,7 @@ const ImageGrid = ({ artworks }: ImageGridProps) => {
                                 <img
                                     className={'artwork-desktop'}
                                     alt={artwork.title}
-                                    src={artwork.url}
+                                    src={artwork.thumbnailUrl}
                                     onClick={() => {
                                         setSelectedArtwork(index)
                                         setModalOpen(true)
